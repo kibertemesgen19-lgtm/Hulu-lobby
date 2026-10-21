@@ -89,6 +89,25 @@ document.addEventListener("click",e=>{
  const c=e.target.closest("[data-chip]");if(c){e.preventDefault();active=c.dataset.chip;q.value="";render();scrollTo({top:chips.offsetTop-70,behavior:"smooth"})}
 });
 q.addEventListener("input",render);
+// Real ETB play: only when opened in Telegram and the Hulu server reports real mode on. Otherwise demo via Supabase.
+const API=HULU+"api/nebula/",INIT=(()=>{try{return Telegram.WebApp.initData||""}catch(e){return ""}})();
+let REAL=false;
+const say=m=>{try{Telegram.WebApp.showAlert(m)}catch(e){alert(m)}};
+async function wallet(){
+ if(!INIT)return;
+ try{const r=await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}});if(!r.ok)return;const w=await r.json();if(!w.real)return;
+  REAL=true;document.querySelector(".bal").innerHTML=`<b>${(w.balance_minor/100).toFixed(2)} ETB</b><small>Wallet</small>`;
+  document.querySelector(".note").textContent="በETB እየተጫወቱ ነው። 18+ በኃላፊነት ይጫወቱ። · Playing with real ETB. 18+, play responsibly.";
+ }catch(e){}
+}
+document.addEventListener("click",async e=>{
+ const a=REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();e.stopImmediatePropagation();
+ try{const r=await fetch(API+"launch",{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify({title_id:a.href.slice(LAUNCH.length),mode:"real"})});
+  const j=await r.json();if(!r.ok||!j.launch_url)return say(j.error||"ጨዋታው አልተከፈተም · Could not start the game");location.href=j.launch_url;
+ }catch(err){say("ግንኙነት አልተሳካም · Connection failed")}
+},true);
+wallet();
+
 try{Telegram.WebApp.ready();Telegram.WebApp.expand();Telegram.WebApp.setHeaderColor("#0e1919");Telegram.WebApp.setBackgroundColor("#0b1414")}catch(e){}
 // Ad posters. To add your own picture: put it in posters/ and add {img:"posters/name.jpg",game:"aviator-x"}.
 const POSTERS=[
