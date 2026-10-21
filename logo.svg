@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Hulu Games logo">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dfff3d"/><stop offset=".48" stop-color="#75ed16"/><stop offset="1" stop-color="#079a45"/></linearGradient></defs>
+<circle cx="60" cy="60" r="51" fill="#071c14" stroke="url(#g)" stroke-width="3"/>
+<path d="M16 69C26 29 63 10 97 31C75 16 34 30 26 56C20 82 38 105 69 105C39 114 7 95 16 69Z" fill="url(#g)"/>
+<path d="M105 54C103 87 74 104 47 92C79 101 96 72 87 45C79 26 52 17 36 27C58 10 106 26 105 54Z" fill="#60ec20" opacity=".89"/>
+<path d="M43 38h13v17h13V38h13v44H69V66H56v16H43Z" fill="#f8fff1"/>
+</svg>
