@@ -69,20 +69,29 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.stats div{background:var(--chip);border-radius:12px;padding:10px}.stats small{color:var(--muted);display:block;font-size:12px}.stats b{font-size:16px}
 .txs{list-style:none;margin:0;padding:0}.txs li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.txs li>span{font-size:20px}.txs div{flex:1;min-width:0}
 .txs small{display:block;color:var(--muted);font-size:12px}.txs .a{font-weight:700;white-space:nowrap}.txs .in{color:var(--green)}.txs .out{color:#ff6b6b}.txs .wait{color:var(--gold)}
+#prof{z-index:7;bottom:calc(63px + env(safe-area-inset-bottom));background:var(--bg);align-items:stretch}#prof>div{max-height:none;height:100%;border-radius:0;border:0;background:var(--bg);padding-bottom:30px}
+.sheet:not(#prof){z-index:21}footer i img{width:24px;height:24px;border-radius:50%;object-fit:cover;display:block}
+.pf .big{overflow:hidden}.pf .big img{width:100%;height:100%;object-fit:cover}.pf .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.pf .tags span{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:var(--muted)}
+.pf .idc{background:none;border:0;color:var(--muted);padding:0;font:inherit;font-size:13px}
+.sec{margin:18px 0 8px;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stats.three{grid-template-columns:1fr 1fr 1fr}.stats em{font-style:normal;font-size:11px;color:var(--muted);display:block}
+.kv{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 12px}.kv div{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.kv div:last-child{border:0}.kv span{color:var(--muted)}
+.ftabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:6px;scrollbar-width:none}.ftabs button{flex:none;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-size:13px}.ftabs .on{background:var(--lime);color:#0b1414;border:0;font-weight:700}
+.pnote{margin-top:10px;padding:10px;border-radius:10px;background:#3a2c0b;color:#f5dfa0;font-size:13px;display:none}
+.help{display:block;margin-top:16px;padding:12px;border-radius:12px;background:var(--chip);border:1px solid var(--line);text-align:center}
 </style></head><body>
 <div class="promo">🎁<div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div class="wm"><b>Hulu</b><small>GAMES</small></div></a>
 <div class="hw"><div class="bal"><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><rect x="1" y="3" width="20" height="14" rx="3" fill="#b5ff3f"/><path d="M3 3l11-2.5 2 2.5" fill="#8fd12a"/><rect x="14" y="8" width="7" height="5" rx="1.5" fill="#0b1414"/><circle cx="16.5" cy="10.5" r="1" fill="#b5ff3f"/></svg><b id="balv">DEMO</b><small id="balc"></small></div>
 <button class="plus" data-sheet="dep" aria-label="Deposit">+</button>
-<button id="refresh" aria-label="Refresh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button>
-<button class="av" id="avatar" data-sheet="prof" aria-label="Profile">👤</button></div></header>
+<button id="refresh" aria-label="Refresh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button></div></header>
 <nav class="tabs"><a class="on" href="#">🎰 Casino</a><a href="#" data-hulu>🎲 Hulu Games</a><a href="#" data-chip="crash">🚀 Crash</a><a href="#" data-chip="slots">🍒 Slots</a></nav>
 <div class="slider" id="slider"><div class="track" id="track"></div><div class="dots" id="dots"></div></div>
 <div class="chips" id="chips"></div>
 <div class="search"><input id="q" type="search" placeholder="🔍 ጨዋታ ፈልግ · Search games" aria-label="Search games"></div>
 <main id="list"></main>
 <p class="note">ሁሉም ጨዋታዎች በDemo (ምናባዊ) ብቻ ናቸው። የገንዘብ ሽልማት የለም። · All games are demo only, no cash prizes.</p>
-<footer><button class="on" data-chip="top"><i>🏠</i>Home</button><button data-chip="all"><i>🎮</i>Games</button><button data-focus><i>🔍</i>Search</button><button data-hulu><i>🎲</i>Hulu</button></footer>
+<footer><button class="on" data-chip="top"><i>🏠</i>Home</button><button data-chip="all"><i>🎮</i>Games</button><button data-focus><i>🔍</i>Search</button><button data-hulu><i>🎲</i>Hulu</button><button data-sheet="prof" id="ftprof"><i id="ftav">👤</i>Profile</button></footer>
 <script src="games.js"></script>
 <script>
 const LAUNCH="https://mpzjvjhtubbauwkjozhq.supabase.co/functions/v1/baron-launch?game=";
@@ -170,11 +179,22 @@ render();
 <label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
 <button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
 <div class="sheet" id="prof"><div><h3>👤 የእኔ መገለጫ · My profile<button data-close>✕</button></h3>
-<div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><small id="pfu"></small></div></div>
-<div class="pbal"><small>ቀሪ ሂሳብ · Balance</small><b id="pfb">…</b></div>
+<div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><button class="idc" id="pfu"></button><div class="tags" id="pft"></div></div></div>
+<div class="pbal"><small>ቀሪ ሂሳብ · Balance</small><b id="pfb">…</b><div class="pnote" id="pfp"></div></div>
 <div class="prow"><button class="dep" data-sheet="dep">💰 ገቢ · Deposit</button><button data-sheet="wd">💸 ወጪ · Withdraw</button></div>
-<div class="stats"><div><small>ያስገቡት · Deposited</small><b id="st-d">0</b></div><div><small>ያወጡት · Withdrawn</small><b id="st-w">0</b></div><div><small>የተወራረዱት · Bets</small><b id="st-b">0</b></div><div><small>ያሸነፉት · Wins</small><b id="st-v">0</b></div></div>
-<h3 style="font-size:16px">ግብይቶች · Transactions</h3><ul class="txs" id="txs"></ul><div class="msg" id="pfmsg"></div></div></div>
+<div class="sec">💰 ገንዘብ · Money</div>
+<div class="stats"><div><small>ያስገቡት · Deposited</small><b id="st-d">0</b><em id="sc-d"></em></div><div><small>ያወጡት · Withdrawn</small><b id="st-w">0</b><em id="sc-w"></em></div></div>
+<div class="sec">🎰 ጨዋታ · Games</div>
+<div class="stats"><div><small>የተወራረዱት · Total bets</small><b id="st-b">0</b><em id="sc-b"></em></div><div><small>ያሸነፉት · Total wins</small><b id="st-v">0</b><em id="sc-v"></em></div>
+<div><small>ትርፍ/ኪሳራ · Net result</small><b id="st-n">0</b></div><div><small>ትልቁ ድል · Biggest win</small><b id="st-x">0</b></div></div>
+<div class="kv"><div><span>የሚወዱት ጨዋታ · Favourite game</span><b id="kv-f">—</b></div><div><span>የአሸናፊነት መጠን · Win rate</span><b id="kv-r">—</b></div></div>
+<div class="sec">🕒 እንቅስቃሴ · Activity</div>
+<div class="kv"><div><span>የተቀላቀሉበት · Joined</span><b id="kv-j">—</b></div><div><span>መጨረሻ ያስገቡት · Last deposit</span><b id="kv-ld">—</b></div><div><span>መጨረሻ ያወጡት · Last withdrawal</span><b id="kv-lw">—</b></div><div><span>መጨረሻ የተጫወቱት · Last played</span><b id="kv-lp">—</b></div></div>
+<div id="pfh" style="display:none"><div class="sec">🎲 Hulu Games</div><div class="stats three"><div><small>ነጥብ · Points</small><b id="hu-p">0</b></div><div><small>ተጫውተዋል · Played</small><b id="hu-g">0</b></div><div><small>አሸንፈዋል · Won</small><b id="hu-w">0</b></div></div></div>
+<div class="sec">🧾 ግብይቶች · Transactions</div>
+<div class="ftabs" id="ftabs"><button class="on" data-f="all">ሁሉም · All</button><button data-f="deposit">ገቢ · Deposits</button><button data-f="withdraw">ወጪ · Withdrawals</button><button data-f="game">ጨዋታ · Games</button></div>
+<ul class="txs" id="txs"></ul><div class="msg" id="pfmsg"></div>
+<a class="help" href="https://t.me/HULU_GAMES_BOT" data-tg>💬 እርዳታ · Help & support</a></div></div>
 <div class="sheet" id="wd"><div><h3>💸 ገንዘብ ማውጫ · Withdraw<button data-close>✕</button></h3>
 <p id="wdbal"></p>
 <label for="wdamt">መጠን (ብር) · Amount (ETB)</label><input id="wdamt" type="number" inputmode="decimal" min="50">
@@ -197,19 +217,37 @@ render();
   const cls=t.status==="pending"?"wait":t.status==="rejected"||t.rolled_back?"":K[2]==="+"?"in":"out";
   return `<li><span>${K[0]}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(t.amount_minor||0)}</span></li>`;
  }
+ const day=t=>t?new Date(t).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"—";
+ const ago=t=>{if(!t)return"—";const m=Math.round((Date.now()-t)/6e4);return m<1?"አሁን · now":m<60?m+" ደቂቃ · min ago":m<1440?Math.round(m/60)+" ሰዓት · h ago":day(t)};
+ const cnt=(n,w)=>n+" "+w,ETB=m=>money(m)+" ETB";let TX=[],F="all";
+ function list(){const l=TX.filter(t=>F==="all"||t.type===F||(F==="game"&&(t.type==="bet"||t.type==="win")));
+  $("txs").innerHTML=l.length?l.map(row).join(""):'<li><div><small>ምንም ግብይት የለም · No transactions</small></div></li>'}
+ $("ftabs").onclick=e=>{const b=e.target.closest("[data-f]");if(!b)return;F=b.dataset.f;$("ftabs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));list()};
  async function profile(){
   try{const r=await fetch(API+"profile",{headers:{"x-telegram-init-data":INIT}}),p=await r.json();if(!r.ok)throw Error(p.error);
-   $("pfi").textContent=(p.name||"?").trim().charAt(0).toUpperCase();$("pfn").textContent=p.name||"Player";
-   $("pfu").textContent=(p.username?"@"+p.username+" · ":"")+"ID "+p.id;$("pfb").textContent=etb(p.balance_minor);setBal(p.balance_minor);
-   $("st-d").textContent=money(p.totals.deposited_minor)+" ETB";$("st-w").textContent=money(p.totals.withdrawn_minor)+" ETB";
-   $("st-b").textContent=money(p.totals.bet_minor)+" ETB";$("st-v").textContent=money(p.totals.won_minor)+" ETB";
-   $("txs").innerHTML=p.transactions.length?p.transactions.map(row).join(""):'<li><div><small>ገና ግብይት የለም · No transactions yet</small></div></li>';
+   let tg={};try{tg=Telegram.WebApp.initDataUnsafe.user||{}}catch(e){}
+   $("pfi").innerHTML=tg.photo_url?`<img src="${esc(tg.photo_url)}" alt="">`:esc((p.name||"?").trim().charAt(0).toUpperCase());$("pfn").textContent=p.name||"Player";
+   $("pfu").textContent=(p.username?"@"+p.username+" · ":"")+"ID "+p.id+" ⧉";$("pfu").onclick=()=>{try{navigator.clipboard.writeText(p.id);say("ID ተቀድቷል · ID copied")}catch(e){}};
+   $("pft").innerHTML=[REAL?"🟢 Real ETB":"🎮 Demo",tg.is_premium?"⭐ Premium":"",tg.language_code?"🌐 "+esc(tg.language_code):"",p.joined_at?"📅 "+day(p.joined_at):""].filter(Boolean).map(t=>`<span>${t}</span>`).join("");
+   $("pfb").textContent=etb(p.balance_minor);setBal(p.balance_minor);const T=p.totals,C=p.counts;
+   const pn=[T.pending_withdraw_minor?`⏳ ${ETB(T.pending_withdraw_minor)} ለማውጣት በመጠበቅ ላይ · withdrawal pending`:"",T.pending_deposits?`⏳ ${T.pending_deposits} ገቢ admin እየጠበቀ · deposit(s) awaiting admin`:""].filter(Boolean);
+   $("pfp").style.display=pn.length?"block":"none";$("pfp").innerHTML=pn.join("<br>");
+   $("st-d").textContent=ETB(T.deposited_minor);$("sc-d").textContent=cnt(C.deposits,"ጊዜ · times");
+   $("st-w").textContent=ETB(T.withdrawn_minor);$("sc-w").textContent=cnt(C.withdrawals,"ጊዜ · times");
+   $("st-b").textContent=ETB(T.bet_minor);$("sc-b").textContent=cnt(C.bets,"ውርርድ · bets");
+   $("st-v").textContent=ETB(T.won_minor);$("sc-v").textContent=cnt(C.wins,"ድል · wins");
+   $("st-n").textContent=(T.net_minor>0?"+":T.net_minor<0?"−":"")+ETB(Math.abs(T.net_minor));$("st-n").style.color=T.net_minor>0?"var(--green)":T.net_minor<0?"#ff6b6b":"";
+   $("st-x").textContent=ETB(p.biggest_win_minor);
+   $("kv-f").textContent=p.favorite_game?p.favorite_game.replace(/-/g," "):"—";$("kv-r").textContent=C.bets?Math.round(C.wins/C.bets*100)+"%":"—";
+   $("kv-j").textContent=day(p.joined_at);$("kv-ld").textContent=ago(p.last.deposit_at);$("kv-lw").textContent=ago(p.last.withdraw_at);$("kv-lp").textContent=ago(p.last.played_at);
+   if(p.hulu){$("pfh").style.display="";$("hu-p").textContent=p.hulu.points;$("hu-g").textContent=p.hulu.played;$("hu-w").textContent=p.hulu.wins}
+   TX=p.transactions;list();
   }catch(e){show($("pfmsg"),"ግንኙነት አልተሳካም · Connection failed")}
  }
  async function open(id){
   if(!INIT)return say("ከቴሌግራም bot ውስጥ ይክፈቱ · Open from the Telegram bot");
-  document.querySelectorAll(".sheet").forEach(x=>x.classList.remove("on"));$(id).classList.add("on");
-  if(id==="prof"){document.querySelectorAll(".msg").forEach(m=>m.classList.remove("on"));return profile()}document.querySelectorAll(".msg").forEach(m=>m.classList.remove("on"));
+  document.querySelectorAll(".sheet").forEach(x=>{if(id==="prof"||x.id!=="prof")x.classList.remove("on")});$(id).classList.add("on");
+  if(id==="prof"){$("ftprof").classList.add("on");document.querySelectorAll("footer [data-chip]").forEach(b=>b.classList.remove("on"));document.querySelectorAll(".msg").forEach(m=>m.classList.remove("on"));scrollTo(0,0);return profile()}document.querySelectorAll(".msg").forEach(m=>m.classList.remove("on"));
   try{const t=await info();
    if(!t.enabled){show($(id==="dep"?"depmsg":"wdmsg"),"ገና አልተከፈተም · Not available yet");return}
    $("tbnum").textContent=t.number;$("tbname").textContent=t.name;
@@ -220,11 +258,14 @@ render();
  }
  document.addEventListener("click",e=>{
   const s=e.target.closest("[data-sheet]");if(s){e.preventDefault();open(s.dataset.sheet);return}
-  if(e.target.closest("[data-close]")||e.target.classList.contains("sheet"))document.querySelectorAll(".sheet").forEach(x=>x.classList.remove("on"));
+  const c=e.target.closest("[data-close]")?e.target.closest(".sheet"):e.target.classList.contains("sheet")?e.target:null;
+  if(c){c.classList.remove("on");if(c.id==="prof")closeProf()}
+  if(e.target.closest("footer [data-chip],footer [data-focus],footer [data-hulu]")){$("prof").classList.remove("on");closeProf()}
  });
  $("refresh").onclick=async()=>{const b=$("refresh");b.classList.add("spin");await wallet();b.classList.remove("spin")};
- // Show the player's initial on the profile button.
- try{const u=Telegram.WebApp.initDataUnsafe.user;if(u&&u.first_name)$("avatar").textContent=u.first_name.trim().charAt(0).toUpperCase()}catch(e){}
+ function closeProf(){$("ftprof").classList.remove("on")}
+ // The player's Telegram photo on the Profile tab, when Telegram shares it.
+ try{const u=Telegram.WebApp.initDataUnsafe.user;if(u&&u.photo_url)$("ftav").innerHTML=`<img src="${esc(u.photo_url)}" alt="">`}catch(e){}
  $("copy").onclick=()=>{try{navigator.clipboard.writeText($("tbnum").textContent);$("copy").textContent="✓"}catch(e){}};
  $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg");if(!$("tx").value.trim())return show(m,"የግብይት ቁጥሩን ያስገቡ · Enter the transaction number");
   b.disabled=true;try{const j=await post("deposit",{tx_id:$("tx").value});
