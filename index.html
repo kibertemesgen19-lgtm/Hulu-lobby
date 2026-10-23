@@ -61,6 +61,10 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .sheet label{display:block;margin:12px 0 4px;font-weight:600}.sheet input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:#fff;font-size:16px}
 .sheet .go{width:100%;margin-top:14px;padding:13px;font-size:16px}.sheet .go:disabled{opacity:.5}.sheet .msg{margin-top:12px;padding:10px;border-radius:10px;background:var(--chip);display:none}.sheet .msg.on{display:block}
 .play{position:fixed;inset:0;z-index:30;display:none;background:#000}.play.on{display:block}.play iframe{width:100%;height:100%;border:0}
+.ld{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 42%,#12301a,#060c0c 70%);transition:opacity .35s}.ld.done{opacity:0;pointer-events:none}
+.ld svg{width:132px;height:132px;filter:drop-shadow(0 0 18px #3ecf4a66)}.ld .o1{transform-origin:60px 60px;animation:spin 1.3s linear infinite}.ld .o2{transform-origin:60px 60px;animation:spin 1.9s linear infinite reverse}
+.ld .hh{transform-origin:60px 60px;animation:pulse 1.3s ease-in-out infinite}@keyframes pulse{50%{transform:scale(.9);opacity:.75}}
+.ld b{font-size:15px;letter-spacing:.5px}.ld small{color:var(--muted);font-size:13px;margin-top:-12px}.ld i{display:block;width:150px;height:4px;border-radius:2px;background:#1d3324;overflow:hidden}.ld i:after{content:"";display:block;width:40%;height:100%;background:#43c04a;border-radius:2px;animation:slide 1.1s ease-in-out infinite}@keyframes slide{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
 .play .exit{position:absolute;top:calc(8px + env(safe-area-inset-top));left:8px;z-index:2;border:1px solid #fff4;border-radius:20px;padding:7px 13px;background:#000b;color:#fff;font-weight:700;font-size:14px}
 .pf{display:flex;gap:12px;align-items:center}.pf .big{width:56px;height:56px;border-radius:50%;background:var(--chip);border:2px solid var(--lime);display:grid;place-items:center;font-size:24px;font-weight:800;color:var(--lime)}
 .pf b{font-size:18px;display:block}.pf small{color:var(--muted)}
@@ -149,15 +153,21 @@ async function wallet(){
 document.addEventListener("click",e=>{const t=e.target.closest("[data-tg]");if(!t)return;e.preventDefault();try{Telegram.WebApp.openTelegramLink(t.href);Telegram.WebApp.close()}catch(err){location.href=t.href}});
 document.addEventListener("click",async e=>{
  const a=REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();e.stopImmediatePropagation();
+ loading();
  try{const r=await fetch(API+"launch",{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify({title_id:a.href.slice(LAUNCH.length),mode:"real"})});
-  const j=await r.json();if(!r.ok||!j.launch_url)return say(j.error||"ጨዋታው አልተከፈተም · Could not start the game");play(j.launch_url);
- }catch(err){say("ግንኙነት አልተሳካም · Connection failed")}
+  const j=await r.json();if(!r.ok||!j.launch_url){exitGame();return say(j.error||"ጨዋታው አልተከፈተም · Could not start the game")}play(j.launch_url);
+ }catch(err){exitGame();say("ግንኙነት አልተሳካም · Connection failed")}
 },true);
 // Games open over the lobby so the exit button (and Telegram's back button) can always bring the player back.
-const playEl=document.createElement("div");playEl.className="play";playEl.innerHTML='<button class="exit">'+ic("back")+' ተመለስ · Back</button><iframe allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe>';document.body.append(playEl);
+const playEl=document.createElement("div");playEl.className="play";playEl.innerHTML='<button class="exit">'+ic("back")+' ተመለስ · Back</button><div class="ld"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#3fae46" stroke-linecap="round"><circle class="o1" cx="60" cy="60" r="50" stroke-width="10" stroke-dasharray="230 84"/><circle class="o2" cx="60" cy="60" r="38" stroke-width="5" stroke-dasharray="150 89"/></g><g class="hh"><circle cx="60" cy="60" r="27" fill="none" stroke="#3fae46" stroke-width="4"/><path d="M48 44h7v12h10V44h7v32h-7V63H55v13h-7z" fill="#3fae46"/></g></svg><b>HULU GAMES</b><small>ጨዋታው እየተከፈተ ነው… · Loading game…</small><i></i></div><iframe allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe>';document.body.append(playEl);
 const frame=playEl.querySelector("iframe"),BB=(()=>{try{return Telegram.WebApp.BackButton}catch(e){return null}})();
-function play(url){frame.src=url;playEl.classList.add("on");document.body.style.overflow="hidden"}
-function exitGame(){playEl.classList.remove("on");frame.src="about:blank";document.body.style.overflow="";wallet()}
+// The Hulu logo spins over the game until its page has loaded (at least briefly, at most 20s).
+const ld=playEl.querySelector(".ld");let ldAt=0,ldT=0;
+function loading(){ldAt=Date.now();ld.classList.remove("done");frame.src="about:blank";playEl.classList.add("on");document.body.style.overflow="hidden";clearTimeout(ldT);ldT=setTimeout(loaded,20000)}
+function loaded(){clearTimeout(ldT);ldT=setTimeout(()=>ld.classList.add("done"),Math.max(0,900-(Date.now()-ldAt)))}
+frame.addEventListener("load",()=>{if(frame.src&&frame.src!=="about:blank")loaded()});
+function play(url){if(!playEl.classList.contains("on"))loading();frame.src=url}
+function exitGame(){clearTimeout(ldT);playEl.classList.remove("on");frame.src="about:blank";document.body.style.overflow="";wallet()}
 playEl.querySelector(".exit").onclick=exitGame;
 document.addEventListener("click",e=>{const a=!REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();play(a.href)});
 wallet();
