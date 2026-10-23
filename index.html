@@ -79,47 +79,56 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .ftabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:6px;scrollbar-width:none}.ftabs button{flex:none;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-size:13px}.ftabs .on{background:var(--lime);color:#0b1414;border:0;font-weight:700}
 .pnote{margin-top:10px;padding:10px;border-radius:10px;background:#3a2c0b;color:#f5dfa0;font-size:13px;display:none}
 .help{display:block;margin-top:16px;padding:12px;border-radius:12px;background:var(--chip);border:1px solid var(--line);text-align:center}
+.ic{width:1.15em;height:1.15em;vertical-align:-.22em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.promo>.ic{width:28px;height:28px;color:var(--gold)}footer i .ic{width:24px;height:24px;vertical-align:0}nav.tabs .ic{color:var(--lime)}
+.search{position:relative}.search>.ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);width:18px;height:18px}.search input{padding-left:40px!important}
+.t .ph .ic{width:40px;height:40px;color:var(--muted)}h2 .ic{color:var(--lime)}.sec .ic{color:var(--lime)}
+.bar{display:flex;margin:-4px 0 10px}.back{display:inline-flex;align-items:center;gap:4px;padding:8px 14px 8px 8px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-weight:700;font-size:14px}.back .ic{width:20px;height:20px;stroke-width:2.6}
+.sheet h3 .ic{color:var(--lime)}.txs li>span.ti{width:36px;height:36px;border-radius:10px;background:var(--chip);display:grid;place-items:center;font-size:0}.txs li>span.ti .ic{width:20px;height:20px}
+.ti.deposit{color:var(--green)}.ti.withdraw{color:var(--gold)}.ti.bet{color:#ff8a8a}.ti.win{color:var(--lime)}
 </style></head><body>
-<div class="promo">🎁<div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol><symbol id="i-chip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></symbol><symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor"/><circle cx="16" cy="8" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="8" cy="16" r="1.3" fill="currentColor"/><circle cx="16" cy="16" r="1.3" fill="currentColor"/></symbol><symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol><symbol id="i-cherry" viewBox="0 0 24 24"><circle cx="7" cy="17" r="4"/><circle cx="17" cy="17" r="4"/><path d="M7 13c0-4 3-8 9-10M17 13c0-3-1-6-1-10M16 3c2 0 4 1 5 2"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol><symbol id="i-pad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11" r="1.1" fill="currentColor"/><circle cx="17.5" cy="13.5" r="1.1" fill="currentColor"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol><symbol id="i-steps" viewBox="0 0 24 24"><path d="M4 16v-2.4C4 11.5 3 10.5 3 8c0-2.7 1.5-6 4.5-6C9.4 2 10 3.8 10 5.5c0 3.1-2 5.7-2 8.7V16a2 2 0 1 1-4 0z"/><path d="M20 20v-2.4c0-2.1 1-3.1 1-5.6 0-2.7-1.5-6-4.5-6C14.6 6 14 7.8 14 9.5c0 3.1 2 5.7 2 8.7V20a2 2 0 1 0 4 0z"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol><symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M11 10.5l1.2-.8v4.6"/></symbol><symbol id="i-bomb" viewBox="0 0 24 24"><circle cx="11" cy="14" r="7"/><path d="m15.5 9.5 2-2M18 3.5l.5 1.5M21 6.5l-1.5.5M20.5 2.5 19.5 4"/></symbol><symbol id="i-sport" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7.5 3.8 2.8-1.4 4.5H9.6l-1.4-4.5z"/><path d="M12 3v4.5M15.8 10.3l4.5-1.5M14.4 14.8l2.6 3.9M9.6 14.8 7 18.7M8.2 10.3 3.7 8.8"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9z"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol><symbol id="i-in" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 17v3h16v-3"/></symbol><symbol id="i-out" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 17v3h16v-3"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.7-2.7-3-6-3"/></symbol><symbol id="i-bet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8l-5 8"/></symbol></svg>
+<div class="promo"><svg class="ic"><use href="#i-gift"/></svg><div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div class="wm"><b>Hulu</b><small>GAMES</small></div></a>
 <div class="hw"><div class="bal"><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><rect x="1" y="3" width="20" height="14" rx="3" fill="#b5ff3f"/><path d="M3 3l11-2.5 2 2.5" fill="#8fd12a"/><rect x="14" y="8" width="7" height="5" rx="1.5" fill="#0b1414"/><circle cx="16.5" cy="10.5" r="1" fill="#b5ff3f"/></svg><b id="balv">DEMO</b><small id="balc"></small></div>
 <button class="plus" data-sheet="dep" aria-label="Deposit">+</button>
 <button id="refresh" aria-label="Refresh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button></div></header>
-<nav class="tabs"><a class="on" href="#">🎰 Casino</a><a href="#" data-hulu>🎲 Hulu Games</a><a href="#" data-chip="crash">🚀 Crash</a><a href="#" data-chip="slots">🍒 Slots</a></nav>
+<nav class="tabs"><a class="on" href="#"><svg class="ic"><use href="#i-chip"/></svg> Casino</a><a href="#" data-hulu><svg class="ic"><use href="#i-dice"/></svg> Hulu Games</a><a href="#" data-chip="crash"><svg class="ic"><use href="#i-rocket"/></svg> Crash</a><a href="#" data-chip="slots"><svg class="ic"><use href="#i-cherry"/></svg> Slots</a></nav>
 <div class="slider" id="slider"><div class="track" id="track"></div><div class="dots" id="dots"></div></div>
 <div class="chips" id="chips"></div>
-<div class="search"><input id="q" type="search" placeholder="🔍 ጨዋታ ፈልግ · Search games" aria-label="Search games"></div>
+<div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ጨዋታ ፈልግ · Search games" aria-label="Search games"></div>
 <main id="list"></main>
 <p class="note">ሁሉም ጨዋታዎች በDemo (ምናባዊ) ብቻ ናቸው። የገንዘብ ሽልማት የለም። · All games are demo only, no cash prizes.</p>
-<footer><button class="on" data-chip="top"><i>🏠</i>Home</button><button data-chip="all"><i>🎮</i>Games</button><button data-focus><i>🔍</i>Search</button><button data-hulu><i>🎲</i>Hulu</button><button data-sheet="prof" id="ftprof"><i id="ftav">👤</i>Profile</button></footer>
+<footer><button class="on" data-chip="top"><i><svg class="ic"><use href="#i-home"/></svg></i>Home</button><button data-chip="all"><i><svg class="ic"><use href="#i-pad"/></svg></i>Games</button><button data-focus><i><svg class="ic"><use href="#i-search"/></svg></i>Search</button><button data-hulu><i><svg class="ic"><use href="#i-dice"/></svg></i>Hulu</button><button data-sheet="prof" id="ftprof"><i id="ftav"><svg class="ic"><use href="#i-user"/></svg></i>Profile</button></footer>
 <script src="games.js"></script>
 <script>
 const LAUNCH="https://mpzjvjhtubbauwkjozhq.supabase.co/functions/v1/baron-launch?game=";
 const HULU="https://hulu-games-web-production.up.railway.app/";
 const CATS=[
- {k:"top",l:"⭐ Top",ids:"aviator-x chicken-road aviamaster balloon-pump jetx classic-mines plinko-x hell-7s gates-of-olympus-1000 fast-keno"},
- {k:"crash",l:"🚀 Crash Games",ids:"aviator-x oviator bird-fly tesla-fly balloon-x helicopter-x car-x jetx football-x horse-crash cricket-x crazy-rocket world-champion-x angry-birds fury aviamaster"},
- {k:"step",l:"🐔 Step",ids:"chicken-road chickenroad2 balloon-pump fish-road frog-jump megablock ko-million"},
- {k:"keno",l:"🔢 Keno",ids:"classic-keno fast-keno neo-keno turbo-keno"},
- {k:"bingo",l:"🎱 Bingo",ids:"abra-bingo fast-bingo standard-bingo"},
- {k:"mines",l:"💣 Mines & Plinko",ids:"classic-mines plinko-x plinko-x-classic roll-x ice-fish hilo baccarat"},
- {k:"slots",l:"🍒 Slots",ids:"hell-7s habesha-fortune habesha-fortune-rgs safari-simba savannah-fortune olympian-legends blazinghot big-bass-bonanza big-bass-vegas-1000 gates-of-olympus-1000 casino-island royal-coins-2 fruit-scratch fruit-scratch-rgs diamond-coins"},
- {k:"sport",l:"⚽ Sport & Other",ids:"tinbit fflp ffte flwf"}];
+ {k:"top",ic:"star",l:"Top",ids:"aviator-x chicken-road aviamaster balloon-pump jetx classic-mines plinko-x hell-7s gates-of-olympus-1000 fast-keno"},
+ {k:"crash",ic:"rocket",l:"Crash Games",ids:"aviator-x oviator bird-fly tesla-fly balloon-x helicopter-x car-x jetx football-x horse-crash cricket-x crazy-rocket world-champion-x angry-birds fury aviamaster"},
+ {k:"step",ic:"steps",l:"Step",ids:"chicken-road chickenroad2 balloon-pump fish-road frog-jump megablock ko-million"},
+ {k:"keno",ic:"hash",l:"Keno",ids:"classic-keno fast-keno neo-keno turbo-keno"},
+ {k:"bingo",ic:"ball",l:"Bingo",ids:"abra-bingo fast-bingo standard-bingo"},
+ {k:"mines",ic:"bomb",l:"Mines & Plinko",ids:"classic-mines plinko-x plinko-x-classic roll-x ice-fish hilo baccarat"},
+ {k:"slots",ic:"cherry",l:"Slots",ids:"hell-7s habesha-fortune habesha-fortune-rgs safari-simba savannah-fortune olympian-legends blazinghot big-bass-bonanza big-bass-vegas-1000 gates-of-olympus-1000 casino-island royal-coins-2 fruit-scratch fruit-scratch-rgs diamond-coins"},
+ {k:"sport",ic:"sport",l:"Sport & Other",ids:"tinbit fflp ffte flwf"}];
 const byId=Object.fromEntries(GAMES.map(g=>[g.id,g]));
+const ic=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const tile=g=>`<a class="t" href="${LAUNCH}${g.id}">${g.i?`<img loading="lazy" src="covers/${g.id}.webp" alt="">`:`<span class="ph">🎮</span>`}<b>${esc(g.n)}</b></a>`;
+const tile=g=>`<a class="t" href="${LAUNCH}${g.id}">${g.i?`<img loading="lazy" src="covers/${g.id}.webp" alt="">`:`<span class="ph">${ic("pad")}</span>`}<b>${esc(g.n)}</b></a>`;
 let active="top";
 const chips=document.getElementById("chips"),list=document.getElementById("list"),q=document.getElementById("q");
-chips.innerHTML=[{k:"all",l:"🎮 All"},...CATS].map(c=>`<button data-chip="${c.k}">${c.l}</button>`).join("");
+chips.innerHTML=[{k:"all",ic:"grid",l:"All"},...CATS].map(c=>`<button data-chip="${c.k}">${ic(c.ic)} ${c.l}</button>`).join("");
 function render(){
  const v=q.value.trim().toLowerCase();
  chips.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.chip===active));
- if(v){const m=GAMES.filter(g=>g.n.toLowerCase().includes(v));list.innerHTML=`<section><h2>🔍 ${m.length} games</h2><div class="grid">${m.map(tile).join("")||"<p>ጨዋታ አልተገኘም</p>"}</div></section>`;return}
- if(active==="all"||active==="top"){list.innerHTML=CATS.map(c=>`<section><h2>${c.l}<small data-chip="${c.k}">All ›</small></h2><div class="row">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
- const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2>${c.l}<small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`;
+ if(v){const m=GAMES.filter(g=>g.n.toLowerCase().includes(v));list.innerHTML=`<section><h2><span>${ic("search")} ${m.length} games</span></h2><div class="grid">${m.map(tile).join("")||"<p>ጨዋታ አልተገኘም</p>"}</div></section>`;return}
+ if(active==="all"||active==="top"){list.innerHTML=CATS.map(c=>`<section><h2><span>${ic(c.ic)} ${c.l}</span><small data-chip="${c.k}">All ›</small></h2><div class="row">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
+ const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2><span>${ic(c.ic)} ${c.l}</span><small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`;
 }
 document.addEventListener("click",e=>{
- const h=e.target.closest("[data-hulu]");if(h){e.preventDefault();location.href=HULU+(window.TG_HASH||location.hash);return}
+ const h=e.target.closest("[data-hulu]");if(h){e.preventDefault();location.href=HULU+"?from=lobby"+(window.TG_HASH||location.hash);return}
  const f=e.target.closest("[data-focus]");if(f){q.focus();return}
  const c=e.target.closest("[data-chip]");if(c){e.preventDefault();active=c.dataset.chip;q.value="";render();scrollTo({top:chips.offsetTop-70,behavior:"smooth"})}
 });
@@ -145,23 +154,23 @@ document.addEventListener("click",async e=>{
  }catch(err){say("ግንኙነት አልተሳካም · Connection failed")}
 },true);
 // Games open over the lobby so the exit button (and Telegram's back button) can always bring the player back.
-const playEl=document.createElement("div");playEl.className="play";playEl.innerHTML='<button class="exit">✕ ውጣ · Exit</button><iframe allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe>';document.body.append(playEl);
+const playEl=document.createElement("div");playEl.className="play";playEl.innerHTML='<button class="exit">'+ic("back")+' ተመለስ · Back</button><iframe allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe>';document.body.append(playEl);
 const frame=playEl.querySelector("iframe"),BB=(()=>{try{return Telegram.WebApp.BackButton}catch(e){return null}})();
-function play(url){frame.src=url;playEl.classList.add("on");document.body.style.overflow="hidden";try{BB.show()}catch(e){}}
-function exitGame(){playEl.classList.remove("on");frame.src="about:blank";document.body.style.overflow="";try{BB.hide()}catch(e){}wallet()}
-playEl.querySelector(".exit").onclick=exitGame;try{BB.onClick(exitGame)}catch(e){}
+function play(url){frame.src=url;playEl.classList.add("on");document.body.style.overflow="hidden"}
+function exitGame(){playEl.classList.remove("on");frame.src="about:blank";document.body.style.overflow="";wallet()}
+playEl.querySelector(".exit").onclick=exitGame;
 document.addEventListener("click",e=>{const a=!REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();play(a.href)});
 wallet();
 
 try{Telegram.WebApp.ready();Telegram.WebApp.expand();Telegram.WebApp.setHeaderColor("#0e1919");Telegram.WebApp.setBackgroundColor("#0b1414")}catch(e){}
 // Ad posters. To add your own picture: put it in posters/ and add {img:"posters/name.jpg",game:"aviator-x"}.
 const POSTERS=[
- {tag:"🔥 HOT",title:"Aviator-X",text:"አውሮፕላኑ ከመብረሩ በፊት ይውጡ! · Cash out before it flies",game:"aviator-x",bg:"linear-gradient(120deg,#3b0a0a,#140606 60%,#000)"},
- {tag:"🐔 NEW",title:"Chicken Road",text:"መንገዱን በሰላም ያሻግሩት · Cross the road, step by step",game:"chicken-road",bg:"linear-gradient(120deg,#3b2a05,#1d1405 60%,#0b0a04)"},
- {tag:"🎰 SLOTS",title:"Gates of Olympus",text:"ዜውስ ይጠብቅዎታል · Free demo spins",game:"gates-of-olympus-1000",bg:"linear-gradient(120deg,#2a0f3d,#140a24 60%,#07040f)"},
- {tag:"🎱 KENO",title:"Fast Keno",text:"ቁጥሮችዎን ይምረጡ · Pick your lucky numbers",game:"fast-keno",bg:"linear-gradient(120deg,#063a33,#06221f 60%,#030f0d)"}];
+ {tag:"HOT",ti:"flame",title:"Aviator-X",text:"አውሮፕላኑ ከመብረሩ በፊት ይውጡ! · Cash out before it flies",game:"aviator-x",bg:"linear-gradient(120deg,#3b0a0a,#140606 60%,#000)"},
+ {tag:"NEW",ti:"sparkle",title:"Chicken Road",text:"መንገዱን በሰላም ያሻግሩት · Cross the road, step by step",game:"chicken-road",bg:"linear-gradient(120deg,#3b2a05,#1d1405 60%,#0b0a04)"},
+ {tag:"SLOTS",ti:"cherry",title:"Gates of Olympus",text:"ዜውስ ይጠብቅዎታል · Free demo spins",game:"gates-of-olympus-1000",bg:"linear-gradient(120deg,#2a0f3d,#140a24 60%,#07040f)"},
+ {tag:"KENO",ti:"ball",title:"Fast Keno",text:"ቁጥሮችዎን ይምረጡ · Pick your lucky numbers",game:"fast-keno",bg:"linear-gradient(120deg,#063a33,#06221f 60%,#030f0d)"}];
 const track=document.getElementById("track"),dots=document.getElementById("dots");
-track.innerHTML=POSTERS.map(p=>p.img?`<a class="slide" href="${LAUNCH}${p.game}"><img class="full" src="${p.img}" alt=""></a>`:`<a class="slide" href="${LAUNCH}${p.game}" style="background:${p.bg}"><img class="bg" src="covers/${p.game}.webp" alt=""><div class="tx"><small>${p.tag}</small><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><span class="cta">▶ Play</span></div></a>`).join("");
+track.innerHTML=POSTERS.map(p=>p.img?`<a class="slide" href="${LAUNCH}${p.game}"><img class="full" src="${p.img}" alt=""></a>`:`<a class="slide" href="${LAUNCH}${p.game}" style="background:${p.bg}"><img class="bg" src="covers/${p.game}.webp" alt=""><div class="tx"><small>${ic(p.ti)} ${p.tag}</small><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><span class="cta">${ic("play")} Play</span></div></a>`).join("");
 dots.innerHTML=POSTERS.map(()=>"<i></i>").join("");
 let slide=0,timer;
 function go(n){slide=(n+POSTERS.length)%POSTERS.length;track.style.transform=`translateX(-${slide*100}%)`;[...dots.children].forEach((d,i)=>d.classList.toggle("on",i===slide))}
@@ -172,30 +181,30 @@ sl.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches
 go(0);auto();
 render();
 </script>
-<div class="sheet" id="dep"><div><h3>💰 ገንዘብ ማስገቢያ · Deposit<button data-close>✕</button></h3>
+<div class="sheet" id="dep"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-in"/></svg> ገንዘብ ማስገቢያ · Deposit</span></h3>
 <p>1. በቴሌብር ወደዚህ ቁጥር ይላኩ · Send with Telebirr to:</p>
 <div class="acct"><div><b id="tbnum">…</b><div id="tbname"></div></div><button id="copy">ቅዳ · Copy</button></div>
 <p id="tbmin"></p>
 <label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
 <button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
-<div class="sheet" id="prof"><div><h3>👤 የእኔ መገለጫ · My profile<button data-close>✕</button></h3>
+<div class="sheet" id="prof"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-user"/></svg> የእኔ መገለጫ · My profile</span></h3>
 <div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><button class="idc" id="pfu"></button><div class="tags" id="pft"></div></div></div>
 <div class="pbal"><small>ቀሪ ሂሳብ · Balance</small><b id="pfb">…</b><div class="pnote" id="pfp"></div></div>
-<div class="prow"><button class="dep" data-sheet="dep">💰 ገቢ · Deposit</button><button data-sheet="wd">💸 ወጪ · Withdraw</button></div>
-<div class="sec">💰 ገንዘብ · Money</div>
+<div class="prow"><button class="dep" data-sheet="dep"><svg class="ic"><use href="#i-in"/></svg> ገቢ · Deposit</button><button data-sheet="wd"><svg class="ic"><use href="#i-out"/></svg> ወጪ · Withdraw</button></div>
+<div class="sec"><svg class="ic"><use href="#i-coins"/></svg> ገንዘብ · Money</div>
 <div class="stats"><div><small>ያስገቡት · Deposited</small><b id="st-d">0</b><em id="sc-d"></em></div><div><small>ያወጡት · Withdrawn</small><b id="st-w">0</b><em id="sc-w"></em></div></div>
-<div class="sec">🎰 ጨዋታ · Games</div>
+<div class="sec"><svg class="ic"><use href="#i-pad"/></svg> ጨዋታ · Games</div>
 <div class="stats"><div><small>የተወራረዱት · Total bets</small><b id="st-b">0</b><em id="sc-b"></em></div><div><small>ያሸነፉት · Total wins</small><b id="st-v">0</b><em id="sc-v"></em></div>
 <div><small>ትርፍ/ኪሳራ · Net result</small><b id="st-n">0</b></div><div><small>ትልቁ ድል · Biggest win</small><b id="st-x">0</b></div></div>
 <div class="kv"><div><span>የሚወዱት ጨዋታ · Favourite game</span><b id="kv-f">—</b></div><div><span>የአሸናፊነት መጠን · Win rate</span><b id="kv-r">—</b></div></div>
-<div class="sec">🕒 እንቅስቃሴ · Activity</div>
+<div class="sec"><svg class="ic"><use href="#i-clock"/></svg> እንቅስቃሴ · Activity</div>
 <div class="kv"><div><span>የተቀላቀሉበት · Joined</span><b id="kv-j">—</b></div><div><span>መጨረሻ ያስገቡት · Last deposit</span><b id="kv-ld">—</b></div><div><span>መጨረሻ ያወጡት · Last withdrawal</span><b id="kv-lw">—</b></div><div><span>መጨረሻ የተጫወቱት · Last played</span><b id="kv-lp">—</b></div></div>
-<div id="pfh" style="display:none"><div class="sec">🎲 Hulu Games</div><div class="stats three"><div><small>ነጥብ · Points</small><b id="hu-p">0</b></div><div><small>ተጫውተዋል · Played</small><b id="hu-g">0</b></div><div><small>አሸንፈዋል · Won</small><b id="hu-w">0</b></div></div></div>
-<div class="sec">🧾 ግብይቶች · Transactions</div>
+<div id="pfh" style="display:none"><div class="sec"><svg class="ic"><use href="#i-dice"/></svg> Hulu Games</div><div class="stats three"><div><small>ነጥብ · Points</small><b id="hu-p">0</b></div><div><small>ተጫውተዋል · Played</small><b id="hu-g">0</b></div><div><small>አሸንፈዋል · Won</small><b id="hu-w">0</b></div></div></div>
+<div class="sec"><svg class="ic"><use href="#i-receipt"/></svg> ግብይቶች · Transactions</div>
 <div class="ftabs" id="ftabs"><button class="on" data-f="all">ሁሉም · All</button><button data-f="deposit">ገቢ · Deposits</button><button data-f="withdraw">ወጪ · Withdrawals</button><button data-f="game">ጨዋታ · Games</button></div>
 <ul class="txs" id="txs"></ul><div class="msg" id="pfmsg"></div>
-<a class="help" href="https://t.me/HULU_GAMES_BOT" data-tg>💬 እርዳታ · Help & support</a></div></div>
-<div class="sheet" id="wd"><div><h3>💸 ገንዘብ ማውጫ · Withdraw<button data-close>✕</button></h3>
+<a class="help" href="https://t.me/HULU_GAMES_BOT" data-tg><svg class="ic"><use href="#i-chat"/></svg> እርዳታ · Help & support</a></div></div>
+<div class="sheet" id="wd"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-out"/></svg> ገንዘብ ማውጫ · Withdraw</span></h3>
 <p id="wdbal"></p>
 <label for="wdamt">መጠን (ብር) · Amount (ETB)</label><input id="wdamt" type="number" inputmode="decimal" min="50">
 <label for="wdto">የቴሌብር ቁጥርዎ · Your Telebirr number</label><input id="wdto" type="tel" inputmode="tel" placeholder="09xxxxxxxx">
@@ -212,10 +221,10 @@ render();
  const when=t=>new Date(t).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
  const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
  function row(t){
-  const K={deposit:["💰","ገቢ · Deposit","+"],withdraw:["💸","ወጪ · Withdraw","−"],bet:["🎰","ውርርድ · Bet","−"],win:["🏆","ድል · Win","+"]}[t.type];
+  const K={deposit:["in","ገቢ · Deposit","+"],withdraw:["out","ወጪ · Withdraw","−"],bet:["bet","ውርርድ · Bet","−"],win:["trophy","ድል · Win","+"]}[t.type];
   const sub=t.status?ST[t.status]||t.status:(t.rolled_back?"↩ ተመልሷል · Refunded":(t.game||""));
   const cls=t.status==="pending"?"wait":t.status==="rejected"||t.rolled_back?"":K[2]==="+"?"in":"out";
-  return `<li><span>${K[0]}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(t.amount_minor||0)}</span></li>`;
+  return `<li><span class="ti ${t.type}">${ic(K[0])}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(t.amount_minor||0)}</span></li>`;
  }
  const day=t=>t?new Date(t).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"—";
  const ago=t=>{if(!t)return"—";const m=Math.round((Date.now()-t)/6e4);return m<1?"አሁን · now":m<60?m+" ደቂቃ · min ago":m<1440?Math.round(m/60)+" ሰዓት · h ago":day(t)};
@@ -277,5 +286,12 @@ render();
   try{const j=await post("withdraw",{amount_etb:Number($("wdamt").value),to:$("wdto").value});setBal(j.balance_minor);
    show(m,`⏳ ${etb(j.amount_minor)} ወደ ${j.to} ይላካል። Admin ሲልክ በbot ይነገርዎታል። · Will be sent to ${j.to}; you'll get a bot message when paid.`);$("wdamt").value=""}
   catch(err){show(m,"❌ "+err.message)}b.disabled=false};
+})();
+// Telegram's back button closes whatever is on top: the game, then a form, then the profile.
+(()=>{const BB=(()=>{try{return Telegram.WebApp.BackButton}catch(e){return null}})();if(!BB)return;
+ const top=()=>document.querySelector(".play.on")||[...document.querySelectorAll(".sheet.on")].sort((a,b)=>(a.id==="prof")-(b.id==="prof"))[0];
+ const sync=()=>{try{top()?BB.show():BB.hide()}catch(e){}};
+ BB.onClick(()=>{const t=top();if(!t)return;if(t.classList.contains("play"))exitGame();else{t.classList.remove("on");if(t.id==="prof")document.getElementById("ftprof").classList.remove("on")}sync()});
+ new MutationObserver(sync).observe(document.body,{subtree:true,attributes:true,attributeFilter:["class"]});
 })();
 </script></body></html>
