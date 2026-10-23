@@ -387,6 +387,8 @@ render();
   try{const j=await post("withdraw",{amount_etb:Number($("wdamt").value),to:$("wdto").value});setBal(j.balance_minor);
    show(m,`⏳ ${etb(j.amount_minor)} ወደ ${j.to} ይላካል። Admin ሲልክ በbot ይነገርዎታል። · ⏳ ${etb(j.amount_minor)} will be sent to ${j.to}; you'll get a bot message when paid.`);$("wdamt").value=""}
   catch(err){show(m,"❌ "+err.message)}b.disabled=false};
+ // The bot's "Send deposit request" / "Send withdrawal request" buttons open the lobby on that form.
+ const want=new URLSearchParams(location.search).get("open");if(want==="dep"||want==="wd"||want==="prof")open(want);
 })();
 // Telegram's back button closes whatever is on top: the game, then a form, then the profile.
 (()=>{const BB=(()=>{try{return Telegram.WebApp.BackButton}catch(e){return null}})();if(!BB)return;
