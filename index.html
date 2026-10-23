@@ -11,6 +11,7 @@ a{color:inherit;text-decoration:none}
 .promo b{color:var(--gold);display:block}.promo small{color:#e9dfc0}
 header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#0e1919ee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:.5px}.logo img{width:34px;height:34px}.logo span{color:var(--lime)}
+.wbtns{display:none;gap:8px;padding:10px 16px 0}.wbtns a{flex:1;text-align:center;padding:10px;border-radius:12px;font-weight:700}.wbtns .dep{background:var(--lime);color:#0b1414}.wbtns .wd{background:var(--chip);border:1px solid var(--line)}
 .bal{margin-left:auto;padding:6px 12px;border-radius:999px;background:var(--chip);text-align:right;line-height:1.1}.bal b{display:block}.bal small{color:var(--muted);font-size:11px}
 nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:#101c1c;border-bottom:1px solid var(--line);scrollbar-width:none}
 nav.tabs a{flex:none;padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}nav.tabs a.on{color:#fff;background:var(--chip)}
@@ -50,6 +51,7 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 </style></head><body>
 <div class="promo">🎁<div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div>HULU <span>GAMES</span></div></a><div class="bal"><b>DEMO</b><small>Virtual play</small></div></header>
+<div class="wbtns" id="wbtns"><a class="dep" href="https://t.me/HULU_GAMES_BOT?start=deposit" data-tg>💰 Deposit · ገቢ</a><a class="wd" href="https://t.me/HULU_GAMES_BOT?start=withdraw" data-tg>💸 Withdraw · ወጪ</a></div>
 <nav class="tabs"><a class="on" href="#">🎰 Casino</a><a href="#" data-hulu>🎲 Hulu Games</a><a href="#" data-chip="crash">🚀 Crash</a><a href="#" data-chip="slots">🍒 Slots</a></nav>
 <div class="slider" id="slider"><div class="track" id="track"></div><div class="dots" id="dots"></div></div>
 <div class="chips" id="chips"></div>
@@ -96,10 +98,11 @@ const say=m=>{try{Telegram.WebApp.showAlert(m)}catch(e){alert(m)}};
 async function wallet(){
  if(!INIT)return;
  try{const r=await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}});if(!r.ok)return;const w=await r.json();if(!w.real)return;
-  REAL=true;document.querySelector(".bal").innerHTML=`<b>${(w.balance_minor/100).toFixed(2)} ETB</b><small>Wallet</small>`;
+  REAL=true;document.getElementById("wbtns").style.display="flex";document.querySelector(".bal").innerHTML=`<b>${(w.balance_minor/100).toFixed(2)} ETB</b><small>Wallet</small>`;
   document.querySelector(".note").textContent="በETB እየተጫወቱ ነው። 18+ በኃላፊነት ይጫወቱ። · Playing with real ETB. 18+, play responsibly.";
  }catch(e){}
 }
+document.addEventListener("click",e=>{const t=e.target.closest("[data-tg]");if(!t)return;e.preventDefault();try{Telegram.WebApp.openTelegramLink(t.href);Telegram.WebApp.close()}catch(err){location.href=t.href}});
 document.addEventListener("click",async e=>{
  const a=REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();e.stopImmediatePropagation();
  try{const r=await fetch(API+"launch",{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify({title_id:a.href.slice(LAUNCH.length),mode:"real"})});
