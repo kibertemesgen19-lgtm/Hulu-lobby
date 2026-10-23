@@ -48,10 +48,17 @@ footer{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space
 footer a,footer button{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font:inherit;font-size:12px;background:none;border:0}
 footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 [hidden]{display:none!important}
+.sheet{position:fixed;inset:0;z-index:20;display:none;align-items:flex-end;background:#000a}.sheet.on{display:flex}
+.sheet>div{width:100%;max-height:90vh;overflow:auto;background:var(--panel);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:16px 16px 24px}
+.sheet h3{margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}.sheet h3 button{background:none;border:0;color:var(--muted);font-size:22px}
+.sheet p{margin:8px 0;color:var(--muted)}.sheet .acct{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center}
+.sheet .acct b{font-size:20px;color:var(--lime);letter-spacing:.5px}.sheet .acct button,.sheet .go{border:0;border-radius:12px;font-weight:700;padding:10px 14px;background:var(--lime);color:#0b1414}
+.sheet label{display:block;margin:12px 0 4px;font-weight:600}.sheet input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:#fff;font-size:16px}
+.sheet .go{width:100%;margin-top:14px;padding:13px;font-size:16px}.sheet .go:disabled{opacity:.5}.sheet .msg{margin-top:12px;padding:10px;border-radius:10px;background:var(--chip);display:none}.sheet .msg.on{display:block}
 </style></head><body>
 <div class="promo">🎁<div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div>HULU <span>GAMES</span></div></a><div class="bal"><b>DEMO</b><small>Virtual play</small></div></header>
-<div class="wbtns" id="wbtns"><a class="dep" href="https://t.me/HULU_GAMES_BOT?start=deposit" data-tg>💰 Deposit · ገቢ</a><a class="wd" href="https://t.me/HULU_GAMES_BOT?start=withdraw" data-tg>💸 Withdraw · ወጪ</a></div>
+<div class="wbtns" id="wbtns"><a class="dep" href="#" data-sheet="dep">💰 Deposit · ገቢ</a><a class="wd" href="#" data-sheet="wd">💸 Withdraw · ወጪ</a></div>
 <nav class="tabs"><a class="on" href="#">🎰 Casino</a><a href="#" data-hulu>🎲 Hulu Games</a><a href="#" data-chip="crash">🚀 Crash</a><a href="#" data-chip="slots">🍒 Slots</a></nav>
 <div class="slider" id="slider"><div class="track" id="track"></div><div class="dots" id="dots"></div></div>
 <div class="chips" id="chips"></div>
@@ -130,4 +137,52 @@ sl.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
 sl.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(slide+(dx<0?1:-1));auto()}sx=null});
 go(0);auto();
 render();
+</script>
+<div class="sheet" id="dep"><div><h3>💰 ገንዘብ ማስገቢያ · Deposit<button data-close>✕</button></h3>
+<p>1. በቴሌብር ወደዚህ ቁጥር ይላኩ · Send with Telebirr to:</p>
+<div class="acct"><div><b id="tbnum">…</b><div id="tbname"></div></div><button id="copy">ቅዳ · Copy</button></div>
+<p id="tbmin"></p>
+<label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
+<button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
+<div class="sheet" id="wd"><div><h3>💸 ገንዘብ ማውጫ · Withdraw<button data-close>✕</button></h3>
+<p id="wdbal"></p>
+<label for="wdamt">መጠን (ብር) · Amount (ETB)</label><input id="wdamt" type="number" inputmode="decimal" min="50">
+<label for="wdto">የቴሌብር ቁጥርዎ · Your Telebirr number</label><input id="wdto" type="tel" inputmode="tel" placeholder="09xxxxxxxx">
+<p id="wdlim"></p>
+<button class="go" id="wdgo">ጠይቅ · Request withdrawal</button><div class="msg" id="wdmsg"></div></div></div>
+<script>
+// Telebirr deposit and withdraw inside the lobby; the Hulu server applies the same checks as the bot.
+(()=>{
+ const $=id=>document.getElementById(id),etb=m=>(m/100).toFixed(2)+" ETB";let TB=null;
+ const post=async(path,body)=>{const r=await fetch(API+path,{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||"Request failed");return j};
+ const show=(el,t)=>{el.textContent=t;el.classList.add("on")};
+ const setBal=m=>{document.querySelector(".bal").innerHTML=`<b>${etb(m)}</b><small>Wallet</small>`};
+ async function info(){if(TB)return TB;const r=await fetch(API+"telebirr",{headers:{"x-telegram-init-data":INIT}});TB=await r.json();if(!r.ok)throw Error(TB.error||"Request failed");return TB}
+ async function open(id){
+  if(!INIT)return say("ከቴሌግራም bot ውስጥ ይክፈቱ · Open from the Telegram bot");
+  $(id).classList.add("on");document.querySelectorAll(".msg").forEach(m=>m.classList.remove("on"));
+  try{const t=await info();
+   if(!t.enabled){show($(id==="dep"?"depmsg":"wdmsg"),"ገና አልተከፈተም · Not available yet");return}
+   $("tbnum").textContent=t.number;$("tbname").textContent=t.name;
+   $("tbmin").textContent=`ቢያንስ ${t.min} ብር። እስከ ${t.auto_max} ብር ወዲያው ይገባል፣ ከዚያ በላይ በadmin ይረጋገጣል። · Min ${t.min} ETB. Up to ${t.auto_max} ETB is instant, more is checked by admin.`;
+   $("wdlim").textContent=`ከ${t.withdraw_min} እስከ ${t.withdraw_max} ብር። Admin በቴሌብር ይልክልዎታል። · ${t.withdraw_min}–${t.withdraw_max} ETB, sent by admin via Telebirr.`;
+   if(id==="wd"){const w=await (await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}})).json();$("wdbal").textContent="ቀሪ ሂሳብ · Balance: "+etb(w.balance_minor||0)}
+  }catch(e){show($(id==="dep"?"depmsg":"wdmsg"),"ግንኙነት አልተሳካም · Connection failed")}
+ }
+ document.addEventListener("click",e=>{
+  const s=e.target.closest("[data-sheet]");if(s){e.preventDefault();open(s.dataset.sheet);return}
+  if(e.target.closest("[data-close]")||e.target.classList.contains("sheet"))document.querySelectorAll(".sheet").forEach(x=>x.classList.remove("on"));
+ });
+ $("copy").onclick=()=>{try{navigator.clipboard.writeText($("tbnum").textContent);$("copy").textContent="✓"}catch(e){}};
+ $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg");if(!$("tx").value.trim())return show(m,"የግብይት ቁጥሩን ያስገቡ · Enter the transaction number");
+  b.disabled=true;try{const j=await post("deposit",{tx_id:$("tx").value});
+   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! · received. ቀሪ · Balance: ${etb(j.balance_minor)}`);$("tx").value=""}
+   else if(j.status==="pending")show(m,"⏳ ተቀብለናል፤ admin እያረጋገጠ ነው። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · Received, waiting for admin approval.");
+   else show(m,"❌ አልተቀበልነውም · Rejected"+(j.reason?": "+j.reason:""));
+  }catch(err){show(m,"❌ "+err.message)}b.disabled=false};
+ $("wdgo").onclick=async()=>{const b=$("wdgo"),m=$("wdmsg");b.disabled=true;
+  try{const j=await post("withdraw",{amount_etb:Number($("wdamt").value),to:$("wdto").value});setBal(j.balance_minor);
+   show(m,`⏳ ${etb(j.amount_minor)} ወደ ${j.to} ይላካል። Admin ሲልክ በbot ይነገርዎታል። · Will be sent to ${j.to}; you'll get a bot message when paid.`);$("wdamt").value=""}
+  catch(err){show(m,"❌ "+err.message)}b.disabled=false};
+})();
 </script></body></html>
