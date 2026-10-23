@@ -203,6 +203,7 @@ render();
 <div class="sec"><svg class="ic"><use href="#i-receipt"/></svg> ግብይቶች · Transactions</div>
 <div class="ftabs" id="ftabs"><button class="on" data-f="all">ሁሉም · All</button><button data-f="deposit">ገቢ · Deposits</button><button data-f="withdraw">ወጪ · Withdrawals</button><button data-f="game">ጨዋታ · Games</button></div>
 <ul class="txs" id="txs"></ul><div class="msg" id="pfmsg"></div>
+<a class="help" id="pfadmin" href="#" style="display:none;background:var(--lime);color:#0b1414;font-weight:700;border:0"><svg class="ic"><use href="#i-grid"/></svg> Admin dashboard</a>
 <a class="help" href="https://t.me/HULU_GAMES_BOT" data-tg><svg class="ic"><use href="#i-chat"/></svg> እርዳታ · Help & support</a></div></div>
 <div class="sheet" id="wd"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-out"/></svg> ገንዘብ ማውጫ · Withdraw</span></h3>
 <p id="wdbal"></p>
@@ -221,10 +222,10 @@ render();
  const when=t=>new Date(t).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
  const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
  function row(t){
-  const K={deposit:["in","ገቢ · Deposit","+"],withdraw:["out","ወጪ · Withdraw","−"],bet:["bet","ውርርድ · Bet","−"],win:["trophy","ድል · Win","+"]}[t.type];
-  const sub=t.status?ST[t.status]||t.status:(t.rolled_back?"↩ ተመልሷል · Refunded":(t.game||""));
+  const K={deposit:["in","ገቢ · Deposit","+"],withdraw:["out","ወጪ · Withdraw","−"],bet:["bet","ውርርድ · Bet","−"],win:["trophy","ድል · Win","+"],adjust:["coins","ማስተካከያ · Admin adjustment",t.amount_minor<0?"−":"+"]}[t.type];
+  const sub=t.status?ST[t.status]||t.status:(t.rolled_back?"↩ ተመልሷል · Refunded":(t.note||t.game||""));
   const cls=t.status==="pending"?"wait":t.status==="rejected"||t.rolled_back?"":K[2]==="+"?"in":"out";
-  return `<li><span class="ti ${t.type}">${ic(K[0])}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(t.amount_minor||0)}</span></li>`;
+  return `<li><span class="ti ${t.type}">${ic(K[0])}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(Math.abs(t.amount_minor||0))}</span></li>`;
  }
  const day=t=>t?new Date(t).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"—";
  const ago=t=>{if(!t)return"—";const m=Math.round((Date.now()-t)/6e4);return m<1?"አሁን · now":m<60?m+" ደቂቃ · min ago":m<1440?Math.round(m/60)+" ሰዓት · h ago":day(t)};
@@ -251,6 +252,7 @@ render();
    $("kv-j").textContent=day(p.joined_at);$("kv-ld").textContent=ago(p.last.deposit_at);$("kv-lw").textContent=ago(p.last.withdraw_at);$("kv-lp").textContent=ago(p.last.played_at);
    if(p.hulu){$("pfh").style.display="";$("hu-p").textContent=p.hulu.points;$("hu-g").textContent=p.hulu.played;$("hu-w").textContent=p.hulu.wins}
    TX=p.transactions;list();
+   if(p.admin){const a=$("pfadmin");a.style.display="block";a.href=HULU+"admin"+(window.TG_HASH||location.hash)}
   }catch(e){show($("pfmsg"),"ግንኙነት አልተሳካም · Connection failed")}
  }
  async function open(id){
