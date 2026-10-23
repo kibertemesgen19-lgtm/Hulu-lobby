@@ -99,6 +99,8 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .bar{display:flex;margin:-4px 0 10px}.back{display:inline-flex;align-items:center;gap:4px;padding:8px 14px 8px 8px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-weight:700;font-size:14px}.back .ic{width:20px;height:20px;stroke-width:2.6}
 .sheet h3 .ic{color:var(--lime)}.txs li>span.ti{width:36px;height:36px;border-radius:10px;background:var(--chip);display:grid;place-items:center;font-size:0}.txs li>span.ti .ic{width:20px;height:20px}
 .ti.deposit{color:var(--green)}.ti.withdraw{color:var(--gold)}.ti.bet{color:#ff8a8a}.ti.win{color:var(--lime)}
+.hw .lang{width:auto;min-width:40px;padding:0 10px;font-size:13px;font-weight:700;color:var(--lime);letter-spacing:.3px}
+.seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}.seg button{flex:1;padding:10px;border-radius:10px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:15px}.seg .on{background:var(--lime);color:#0b1414;font-weight:700}
 /* Typography */
 body{font-family:"Outfit","Noto Sans Ethiopic",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 button,input{font-family:inherit}
@@ -126,42 +128,55 @@ footer a,footer button{font-size:11px;font-weight:600;letter-spacing:.2px}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol><symbol id="i-chip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></symbol><symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor"/><circle cx="16" cy="8" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="8" cy="16" r="1.3" fill="currentColor"/><circle cx="16" cy="16" r="1.3" fill="currentColor"/></symbol><symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol><symbol id="i-cherry" viewBox="0 0 24 24"><circle cx="7" cy="17" r="4"/><circle cx="17" cy="17" r="4"/><path d="M7 13c0-4 3-8 9-10M17 13c0-3-1-6-1-10M16 3c2 0 4 1 5 2"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol><symbol id="i-pad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11" r="1.1" fill="currentColor"/><circle cx="17.5" cy="13.5" r="1.1" fill="currentColor"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol><symbol id="i-steps" viewBox="0 0 24 24"><path d="M4 16v-2.4C4 11.5 3 10.5 3 8c0-2.7 1.5-6 4.5-6C9.4 2 10 3.8 10 5.5c0 3.1-2 5.7-2 8.7V16a2 2 0 1 1-4 0z"/><path d="M20 20v-2.4c0-2.1 1-3.1 1-5.6 0-2.7-1.5-6-4.5-6C14.6 6 14 7.8 14 9.5c0 3.1 2 5.7 2 8.7V20a2 2 0 1 0 4 0z"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol><symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M11 10.5l1.2-.8v4.6"/></symbol><symbol id="i-bomb" viewBox="0 0 24 24"><circle cx="11" cy="14" r="7"/><path d="m15.5 9.5 2-2M18 3.5l.5 1.5M21 6.5l-1.5.5M20.5 2.5 19.5 4"/></symbol><symbol id="i-sport" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7.5 3.8 2.8-1.4 4.5H9.6l-1.4-4.5z"/><path d="M12 3v4.5M15.8 10.3l4.5-1.5M14.4 14.8l2.6 3.9M9.6 14.8 7 18.7M8.2 10.3 3.7 8.8"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9z"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol><symbol id="i-in" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 17v3h16v-3"/></symbol><symbol id="i-out" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 17v3h16v-3"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.7-2.7-3-6-3"/></symbol><symbol id="i-bet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8l-5 8"/></symbol></svg>
 <div class="promo"><svg class="ic"><use href="#i-gift"/></svg><div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div class="wm"><b>Hulu</b><small>GAMES</small></div></a>
-<div class="hw"><div class="bal"><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><rect x="1" y="3" width="20" height="14" rx="3" fill="#b5ff3f"/><path d="M3 3l11-2.5 2 2.5" fill="#8fd12a"/><rect x="14" y="8" width="7" height="5" rx="1.5" fill="#0b1414"/><circle cx="16.5" cy="10.5" r="1" fill="#b5ff3f"/></svg><b id="balv">DEMO</b><small id="balc"></small></div>
+<div class="hw"><button id="lang" class="lang" aria-label="Language / ቋንቋ">አማ</button><div class="bal"><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><rect x="1" y="3" width="20" height="14" rx="3" fill="#b5ff3f"/><path d="M3 3l11-2.5 2 2.5" fill="#8fd12a"/><rect x="14" y="8" width="7" height="5" rx="1.5" fill="#0b1414"/><circle cx="16.5" cy="10.5" r="1" fill="#b5ff3f"/></svg><b id="balv">DEMO</b><small id="balc"></small></div>
 <button class="plus" data-sheet="dep" aria-label="Deposit">+</button>
 <button id="refresh" aria-label="Refresh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button></div></header>
-<nav class="tabs"><a class="on" href="#"><svg class="ic"><use href="#i-chip"/></svg> Casino</a><a href="#" data-hulu><svg class="ic"><use href="#i-dice"/></svg> Hulu Games</a><a href="#" data-chip="crash"><svg class="ic"><use href="#i-rocket"/></svg> Crash</a><a href="#" data-chip="slots"><svg class="ic"><use href="#i-cherry"/></svg> Slots</a></nav>
+<nav class="tabs"><a class="on" href="#"><svg class="ic"><use href="#i-chip"/></svg> ካሲኖ · Casino</a><a href="#" data-hulu><svg class="ic"><use href="#i-dice"/></svg> Hulu Games</a><a href="#" data-chip="crash"><svg class="ic"><use href="#i-rocket"/></svg> ክራሽ · Crash</a><a href="#" data-chip="slots"><svg class="ic"><use href="#i-cherry"/></svg> ስሎት · Slots</a></nav>
 <div class="slider" id="slider"><div class="track" id="track"></div><div class="dots" id="dots"></div></div>
 <div class="chips" id="chips"></div>
 <div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ጨዋታ ፈልግ · Search games" aria-label="Search games"></div>
 <main id="list"></main>
 <p class="note">ሁሉም ጨዋታዎች በDemo (ምናባዊ) ብቻ ናቸው። የገንዘብ ሽልማት የለም። · All games are demo only, no cash prizes.</p>
-<footer><button class="on" data-chip="top"><i><svg class="ic"><use href="#i-home"/></svg></i>Home</button><button data-chip="all"><i><svg class="ic"><use href="#i-pad"/></svg></i>Games</button><button data-focus><i><svg class="ic"><use href="#i-search"/></svg></i>Search</button><button data-hulu><i><svg class="ic"><use href="#i-dice"/></svg></i>Hulu</button><button data-sheet="prof" id="ftprof"><i id="ftav"><svg class="ic"><use href="#i-user"/></svg></i>Profile</button></footer>
+<footer><button class="on" data-chip="top"><i><svg class="ic"><use href="#i-home"/></svg></i>ዋና · Home</button><button data-chip="all"><i><svg class="ic"><use href="#i-pad"/></svg></i>ጨዋታ · Games</button><button data-focus><i><svg class="ic"><use href="#i-search"/></svg></i>ፍለጋ · Search</button><button data-hulu><i><svg class="ic"><use href="#i-dice"/></svg></i>Hulu</button><button data-sheet="prof" id="ftprof"><i id="ftav"><svg class="ic"><use href="#i-user"/></svg></i>መገለጫ · Profile</button></footer>
 <script src="games.js"></script>
 <script>
 const LAUNCH="https://mpzjvjhtubbauwkjozhq.supabase.co/functions/v1/baron-launch?game=";
 const HULU="https://hulu-games-web-production.up.railway.app/";
+// Language: "am" or "en". Bilingual strings are written "አማርኛ · English"; L() keeps one half.
+let LANG="am";try{const v=localStorage.getItem("hulu_lang");if(v==="en"||v==="am")LANG=v}catch(e){}
+const L=s=>{s=String(s);const i=s.indexOf(" · ");return i<0?s:LANG==="en"?s.slice(i+3):s.slice(0,i)};
+const ETH=/[\u1200-\u137F]/;
+// Static text: each "አማርኛ · English" text node keeps its original in _bi so it can be switched again.
+function tr(root){
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;
+ while(n=w.nextNode()){const p=n.parentNode;if(!p||/^(SCRIPT|STYLE)$/.test(p.nodeName))continue;
+  if(n._bi==null){const v=n.nodeValue,i=v.indexOf(" · ");if(i<0||!ETH.test(v.slice(0,i))||ETH.test(v.slice(i+3)))continue;n._bi=v}
+  const v=n._bi,i=v.indexOf(" · "),lead=v.match(/^\s*/)[0];n.nodeValue=LANG==="en"?lead+v.slice(i+3):v.slice(0,i)}
+ if(root.querySelectorAll)root.querySelectorAll("[placeholder]").forEach(e=>{if(e._bi==null)e._bi=e.placeholder;e.placeholder=L(e._bi)});
+}
 const CATS=[
- {k:"top",ic:"star",l:"Top",ids:"aviator-x chicken-road aviamaster balloon-pump jetx classic-mines plinko-x hell-7s gates-of-olympus-1000 fast-keno"},
- {k:"crash",ic:"rocket",l:"Crash Games",ids:"aviator-x oviator bird-fly tesla-fly balloon-x helicopter-x car-x jetx football-x horse-crash cricket-x crazy-rocket world-champion-x angry-birds fury aviamaster"},
- {k:"step",ic:"steps",l:"Step",ids:"chicken-road chickenroad2 balloon-pump fish-road frog-jump megablock ko-million"},
- {k:"keno",ic:"hash",l:"Keno",ids:"classic-keno fast-keno neo-keno turbo-keno"},
- {k:"bingo",ic:"ball",l:"Bingo",ids:"abra-bingo fast-bingo standard-bingo"},
- {k:"mines",ic:"bomb",l:"Mines & Plinko",ids:"classic-mines plinko-x plinko-x-classic roll-x ice-fish hilo baccarat"},
- {k:"slots",ic:"cherry",l:"Slots",ids:"hell-7s habesha-fortune habesha-fortune-rgs safari-simba savannah-fortune olympian-legends blazinghot big-bass-bonanza big-bass-vegas-1000 gates-of-olympus-1000 casino-island royal-coins-2 fruit-scratch fruit-scratch-rgs diamond-coins"},
- {k:"sport",ic:"sport",l:"Sport & Other",ids:"tinbit fflp ffte flwf"}];
+ {k:"top",ic:"star",l:"ምርጥ · Top",ids:"aviator-x chicken-road aviamaster balloon-pump jetx classic-mines plinko-x hell-7s gates-of-olympus-1000 fast-keno"},
+ {k:"crash",ic:"rocket",l:"ክራሽ ጨዋታዎች · Crash Games",ids:"aviator-x oviator bird-fly tesla-fly balloon-x helicopter-x car-x jetx football-x horse-crash cricket-x crazy-rocket world-champion-x angry-birds fury aviamaster"},
+ {k:"step",ic:"steps",l:"ደረጃ · Step",ids:"chicken-road chickenroad2 balloon-pump fish-road frog-jump megablock ko-million"},
+ {k:"keno",ic:"hash",l:"ኬኖ · Keno",ids:"classic-keno fast-keno neo-keno turbo-keno"},
+ {k:"bingo",ic:"ball",l:"ቢንጎ · Bingo",ids:"abra-bingo fast-bingo standard-bingo"},
+ {k:"mines",ic:"bomb",l:"ማይንስ እና ፕሊንኮ · Mines & Plinko",ids:"classic-mines plinko-x plinko-x-classic roll-x ice-fish hilo baccarat"},
+ {k:"slots",ic:"cherry",l:"ስሎት · Slots",ids:"hell-7s habesha-fortune habesha-fortune-rgs safari-simba savannah-fortune olympian-legends blazinghot big-bass-bonanza big-bass-vegas-1000 gates-of-olympus-1000 casino-island royal-coins-2 fruit-scratch fruit-scratch-rgs diamond-coins"},
+ {k:"sport",ic:"sport",l:"ስፖርትና ሌሎች · Sport & Other",ids:"tinbit fflp ffte flwf"}];
 const byId=Object.fromEntries(GAMES.map(g=>[g.id,g]));
 const ic=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tile=g=>`<a class="t" href="${LAUNCH}${g.id}">${g.i?`<img loading="lazy" src="covers/${g.id}.webp" alt="">`:`<span class="ph">${ic("pad")}</span>`}<b>${esc(g.n)}</b></a>`;
 let active="top";
 const chips=document.getElementById("chips"),list=document.getElementById("list"),q=document.getElementById("q");
-chips.innerHTML=[{k:"all",ic:"grid",l:"All"},...CATS].map(c=>`<button data-chip="${c.k}">${ic(c.ic)} ${c.l}</button>`).join("");
+const drawChips=()=>chips.innerHTML=[{k:"all",ic:"grid",l:"ሁሉም · All"},...CATS].map(c=>`<button data-chip="${c.k}">${ic(c.ic)} ${L(c.l)}</button>`).join("");
+drawChips();
 function render(){
  const v=q.value.trim().toLowerCase();
  chips.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.chip===active));
- if(v){const m=GAMES.filter(g=>g.n.toLowerCase().includes(v));list.innerHTML=`<section><h2><span>${ic("search")} ${m.length} games</span></h2><div class="grid">${m.map(tile).join("")||"<p>ጨዋታ አልተገኘም</p>"}</div></section>`;return}
- if(active==="all"||active==="top"){list.innerHTML=CATS.map(c=>`<section><h2><span>${ic(c.ic)} ${c.l}</span><small data-chip="${c.k}">All ›</small></h2><div class="row">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
- const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2><span>${ic(c.ic)} ${c.l}</span><small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`;
+ if(v){const m=GAMES.filter(g=>g.n.toLowerCase().includes(v));list.innerHTML=`<section><h2><span>${ic("search")} ${m.length} ${L("ጨዋታዎች · games")}</span></h2><div class="grid">${m.map(tile).join("")||"<p>"+L("ጨዋታ አልተገኘም · No games found")+"</p>"}</div></section>`;return}
+ if(active==="all"||active==="top"){list.innerHTML=CATS.map(c=>`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small data-chip="${c.k}">${L("ሁሉም · All")} ›</small></h2><div class="row">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
+ const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`;
 }
 document.addEventListener("click",e=>{
  const h=e.target.closest("[data-hulu]");if(h){e.preventDefault();location.href=HULU+"?from=lobby"+(window.TG_HASH||location.hash);return}
@@ -172,7 +187,7 @@ q.addEventListener("input",render);
 // Real ETB play: only when opened in Telegram and the Hulu server reports real mode on. Otherwise demo via Supabase.
 const API=HULU+"api/nebula/",INIT=(()=>{try{return Telegram.WebApp.initData||""}catch(e){return ""}})();
 let REAL=false;
-const say=m=>{try{Telegram.WebApp.showAlert(m)}catch(e){alert(m)}};
+const say=m=>{try{Telegram.WebApp.showAlert(L(m))}catch(e){alert(L(m))}};
 const cur=m=>money(m)+'<span class="cu">ETB</span>';
 const money=m=>{const n=m/100;return n.toLocaleString("en-US",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})};
 function setBal(m){document.getElementById("balv").textContent=money(m);document.getElementById("balc").textContent="ETB"}
@@ -180,7 +195,7 @@ async function wallet(){
  if(!INIT)return;
  try{const r=await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}});if(!r.ok)return;const w=await r.json();if(!w.real)return;
   REAL=true;setBal(w.balance_minor);const pr=document.querySelector(".promo");if(pr)pr.style.display="none";
-  document.querySelector(".note").textContent="በETB እየተጫወቱ ነው። 18+ በኃላፊነት ይጫወቱ። · Playing with real ETB. 18+, play responsibly.";
+  document.querySelector(".note").textContent=L("በETB እየተጫወቱ ነው። 18+ በኃላፊነት ይጫወቱ። · Playing with real ETB. 18+, play responsibly.");
  }catch(e){}
 }
 document.addEventListener("click",e=>{const t=e.target.closest("[data-tg]");if(!t)return;e.preventDefault();try{Telegram.WebApp.openTelegramLink(t.href);Telegram.WebApp.close()}catch(err){location.href=t.href}});
@@ -229,10 +244,10 @@ go(0);auto();
 render();
 </script>
 <div class="sheet" id="dep"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-in"/></svg> ገንዘብ ማስገቢያ · Deposit</span></h3>
-<p>1. በቴሌብር ወደዚህ ቁጥር ይላኩ · Send with Telebirr to:</p>
+<p>1. በቴሌብር ወደዚህ ቁጥር ይላኩ · 1. Send with Telebirr to:</p>
 <div class="acct"><div><b id="tbnum">…</b><div id="tbname"></div></div><button id="copy">ቅዳ · Copy</button></div>
 <p id="tbmin"></p>
-<label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
+<label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · 2. Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
 <button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
 <div class="sheet" id="prof"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-user"/></svg> የእኔ መገለጫ · My profile</span></h3>
 <div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><button class="idc" id="pfu"></button><div class="tags" id="pft"></div></div></div>
@@ -247,6 +262,8 @@ render();
 <div class="sec"><svg class="ic"><use href="#i-clock"/></svg> እንቅስቃሴ · Activity</div>
 <div class="kv"><div><span>የተቀላቀሉበት · Joined</span><b id="kv-j">—</b></div><div><span>መጨረሻ ያስገቡት · Last deposit</span><b id="kv-ld">—</b></div><div><span>መጨረሻ ያወጡት · Last withdrawal</span><b id="kv-lw">—</b></div><div><span>መጨረሻ የተጫወቱት · Last played</span><b id="kv-lp">—</b></div></div>
 <div id="pfh" style="display:none"><div class="sec"><svg class="ic"><use href="#i-dice"/></svg> Hulu Games</div><div class="stats three"><div><small>ነጥብ · Points</small><b id="hu-p">0</b></div><div><small>ተጫውተዋል · Played</small><b id="hu-g">0</b></div><div><small>አሸንፈዋል · Won</small><b id="hu-w">0</b></div></div></div>
+<div class="sec"><svg class="ic"><use href="#i-chat"/></svg> ቋንቋ · Language</div>
+<div class="seg"><button data-lang="am">አማርኛ</button><button data-lang="en">English</button></div>
 <div class="sec"><svg class="ic"><use href="#i-receipt"/></svg> ግብይቶች · Transactions</div>
 <div class="ftabs" id="ftabs"><button class="on" data-f="all">ሁሉም · All</button><button data-f="deposit">ገቢ · Deposits</button><button data-f="withdraw">ወጪ · Withdrawals</button><button data-f="game">ጨዋታ · Games</button></div>
 <ul class="txs" id="txs"></ul><div class="msg" id="pfmsg"></div>
@@ -263,7 +280,7 @@ render();
 (()=>{
  const $=id=>document.getElementById(id),etb=m=>(m/100).toFixed(2)+" ETB";let TB=null;
  const post=async(path,body)=>{const r=await fetch(API+path,{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||"Request failed");return j};
- const show=(el,t)=>{el.textContent=t;el.classList.add("on")};
+ const show=(el,t)=>{el.textContent=L(t);el.classList.add("on")};
  async function info(){if(TB)return TB;const r=await fetch(API+"telebirr",{headers:{"x-telegram-init-data":INIT}});TB=await r.json();if(!r.ok)throw Error(TB.error||"Request failed");return TB}
  const ST={approved:"✓ ጸድቋል · Approved",pending:"⏳ በመጠበቅ ላይ · Pending",rejected:"✕ ተቀባይነት አላገኘም · Rejected",paid:"✓ ተልኳል · Paid"};
  const when=t=>new Date(t).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
@@ -272,14 +289,15 @@ render();
   const K={deposit:["in","ገቢ · Deposit","+"],withdraw:["out","ወጪ · Withdraw","−"],bet:["bet","ውርርድ · Bet","−"],win:["trophy","ድል · Win","+"],adjust:["coins","ማስተካከያ · Admin adjustment",t.amount_minor<0?"−":"+"]}[t.type];
   const sub=t.status?ST[t.status]||t.status:(t.rolled_back?"↩ ተመልሷል · Refunded":(t.note||t.game||""));
   const cls=t.status==="pending"?"wait":t.status==="rejected"||t.rolled_back?"":K[2]==="+"?"in":"out";
-  return `<li><span class="ti ${t.type}">${ic(K[0])}</span><div><b>${K[1]}</b><small>${esc(sub)} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(Math.abs(t.amount_minor||0))}</span></li>`;
+  return `<li><span class="ti ${t.type}">${ic(K[0])}</span><div><b>${L(K[1])}</b><small>${esc(L(sub))} · ${when(t.at)}${t.id?" · "+esc(t.id):""}</small></div><span class="a ${cls}">${K[2]}${money(Math.abs(t.amount_minor||0))}</span></li>`;
  }
  const day=t=>t?new Date(t).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"—";
- const ago=t=>{if(!t)return"—";const m=Math.round((Date.now()-t)/6e4);return m<1?"አሁን · now":m<60?m+" ደቂቃ · min ago":m<1440?Math.round(m/60)+" ሰዓት · h ago":day(t)};
- const cnt=(n,w)=>n+" "+w,ETB=m=>money(m)+" ETB";let TX=[],F="all";
+ const ago=t=>{if(!t)return"—";const m=Math.round((Date.now()-t)/6e4);return m<1?L("አሁን · now"):m<60?L(`ከ${m} ደቂቃ በፊት · ${m} min ago`):m<1440?L(`ከ${Math.round(m/60)} ሰዓት በፊት · ${Math.round(m/60)} h ago`):day(t)};
+ const cnt=(n,w)=>n+" "+L(w),ETB=m=>money(m)+" ETB";let TX=[],F="all";
  function list(){const l=TX.filter(t=>F==="all"||t.type===F||(F==="game"&&(t.type==="bet"||t.type==="win")));
-  $("txs").innerHTML=l.length?l.map(row).join(""):'<li><div><small>ምንም ግብይት የለም · No transactions</small></div></li>'}
+  $("txs").innerHTML=l.length?l.map(row).join(""):'<li><div><small>'+L("ምንም ግብይት የለም · No transactions")+'</small></div></li>'}
  $("ftabs").onclick=e=>{const b=e.target.closest("[data-f]");if(!b)return;F=b.dataset.f;$("ftabs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));list()};
+ window.addEventListener("hulu-lang",()=>{if($("prof").classList.contains("on"))profile();else list()});
  async function profile(){
   try{const r=await fetch(API+"profile",{headers:{"x-telegram-init-data":INIT}}),p=await r.json();if(!r.ok)throw Error(p.error);
    let tg={};try{tg=Telegram.WebApp.initDataUnsafe.user||{}}catch(e){}
@@ -287,7 +305,7 @@ render();
    $("pfu").textContent=(p.username?"@"+p.username+" · ":"")+"ID "+p.id+" ⧉";$("pfu").onclick=()=>{try{navigator.clipboard.writeText(p.id);say("ID ተቀድቷል · ID copied")}catch(e){}};
    $("pft").innerHTML=[REAL?"🟢 Real ETB":"🎮 Demo",tg.is_premium?"⭐ Premium":"",tg.language_code?"🌐 "+esc(tg.language_code):"",p.joined_at?"📅 "+day(p.joined_at):""].filter(Boolean).map(t=>`<span>${t}</span>`).join("");
    $("pfb").innerHTML=(p.balance_minor/100).toFixed(2)+'<span class="cu">ETB</span>';setBal(p.balance_minor);const T=p.totals,C=p.counts;
-   const pn=[T.pending_withdraw_minor?`⏳ ${ETB(T.pending_withdraw_minor)} ለማውጣት በመጠበቅ ላይ · withdrawal pending`:"",T.pending_deposits?`⏳ ${T.pending_deposits} ገቢ admin እየጠበቀ · deposit(s) awaiting admin`:""].filter(Boolean);
+   const pn=[T.pending_withdraw_minor?`⏳ ${ETB(T.pending_withdraw_minor)} `+L("ለማውጣት በመጠበቅ ላይ · withdrawal pending"):"",T.pending_deposits?`⏳ ${T.pending_deposits} `+L("ገቢ admin እየጠበቀ · deposit(s) awaiting admin"):""].filter(Boolean);
    $("pfp").style.display=pn.length?"block":"none";$("pfp").innerHTML=pn.join("<br>");
    $("st-d").innerHTML=cur(T.deposited_minor);$("sc-d").textContent=cnt(C.deposits,"ጊዜ · times");
    $("st-w").innerHTML=cur(T.withdrawn_minor);$("sc-w").textContent=cnt(C.withdrawals,"ጊዜ · times");
@@ -309,9 +327,9 @@ render();
   try{const t=await info();
    if(!t.enabled){show($(id==="dep"?"depmsg":"wdmsg"),"ገና አልተከፈተም · Not available yet");return}
    $("tbnum").textContent=t.number;$("tbname").textContent=t.name;
-   $("tbmin").textContent=`ቢያንስ ${t.min} ብር። እስከ ${t.auto_max} ብር ወዲያው ይገባል፣ ከዚያ በላይ በadmin ይረጋገጣል። · Min ${t.min} ETB. Up to ${t.auto_max} ETB is instant, more is checked by admin.`;
-   $("wdlim").textContent=`ከ${t.withdraw_min} እስከ ${t.withdraw_max} ብር። Admin በቴሌብር ይልክልዎታል። · ${t.withdraw_min}–${t.withdraw_max} ETB, sent by admin via Telebirr.`;
-   if(id==="wd"){const w=await (await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}})).json();$("wdbal").textContent="ቀሪ ሂሳብ · Balance: "+etb(w.balance_minor||0)}
+   $("tbmin").textContent=L(`ቢያንስ ${t.min} ብር። እስከ ${t.auto_max} ብር ወዲያው ይገባል፣ ከዚያ በላይ በadmin ይረጋገጣል። · Min ${t.min} ETB. Up to ${t.auto_max} ETB is instant, more is checked by admin.`);
+   $("wdlim").textContent=L(`ከ${t.withdraw_min} እስከ ${t.withdraw_max} ብር። Admin በቴሌብር ይልክልዎታል። · ${t.withdraw_min}–${t.withdraw_max} ETB, sent by admin via Telebirr.`);
+   if(id==="wd"){const w=await (await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}})).json();$("wdbal").textContent=L("ቀሪ ሂሳብ · Balance")+": "+etb(w.balance_minor||0)}
   }catch(e){show($(id==="dep"?"depmsg":"wdmsg"),"ግንኙነት አልተሳካም · Connection failed")}
  }
  document.addEventListener("click",e=>{
@@ -327,13 +345,13 @@ render();
  $("copy").onclick=()=>{try{navigator.clipboard.writeText($("tbnum").textContent);$("copy").textContent="✓"}catch(e){}};
  $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg");if(!$("tx").value.trim())return show(m,"የግብይት ቁጥሩን ያስገቡ · Enter the transaction number");
   b.disabled=true;try{const j=await post("deposit",{tx_id:$("tx").value});
-   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! · received. ቀሪ · Balance: ${etb(j.balance_minor)}`);$("tx").value=""}
+   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! ቀሪ ሂሳብ፦ ${etb(j.balance_minor)} · ✅ ${etb(j.amount_minor)} received! Balance: ${etb(j.balance_minor)}`);$("tx").value=""}
    else if(j.status==="pending")show(m,"⏳ ተቀብለናል፤ admin እያረጋገጠ ነው። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · Received, waiting for admin approval.");
-   else show(m,"❌ አልተቀበልነውም · Rejected"+(j.reason?": "+j.reason:""));
+   else show(m,L("❌ አልተቀበልነውም · ❌ Rejected")+(j.reason?": "+j.reason:""));
   }catch(err){show(m,"❌ "+err.message)}b.disabled=false};
  $("wdgo").onclick=async()=>{const b=$("wdgo"),m=$("wdmsg");b.disabled=true;
   try{const j=await post("withdraw",{amount_etb:Number($("wdamt").value),to:$("wdto").value});setBal(j.balance_minor);
-   show(m,`⏳ ${etb(j.amount_minor)} ወደ ${j.to} ይላካል። Admin ሲልክ በbot ይነገርዎታል። · Will be sent to ${j.to}; you'll get a bot message when paid.`);$("wdamt").value=""}
+   show(m,`⏳ ${etb(j.amount_minor)} ወደ ${j.to} ይላካል። Admin ሲልክ በbot ይነገርዎታል። · ⏳ ${etb(j.amount_minor)} will be sent to ${j.to}; you'll get a bot message when paid.`);$("wdamt").value=""}
   catch(err){show(m,"❌ "+err.message)}b.disabled=false};
 })();
 // Telegram's back button closes whatever is on top: the game, then a form, then the profile.
@@ -344,10 +362,16 @@ render();
  new MutationObserver(sync).observe(document.body,{subtree:true,attributes:true,attributeFilter:["class"]});
 })();
 </script><script>
-// Bilingual labels: keep Amharic primary and set the English half lighter.
-(function(){const skip=/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/;
- const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>!skip.test(n.parentNode.nodeName)&&!n.parentNode.closest(".en,p,.note,.msg,.pnote")&&/\S · \S/.test(n.nodeValue)?1:2});
- const l=[];while(w.nextNode())l.push(w.currentNode);
- l.forEach(n=>{const i=n.nodeValue.indexOf(" · ");const e=document.createElement("span");e.className="en";e.textContent=n.nodeValue.slice(i+1);n.nodeValue=n.nodeValue.slice(0,i+1);n.after(e)})})();
+// Apply the saved language and wire the switches (header pill and profile).
+(function(){
+ const set=l=>{LANG=l;try{localStorage.setItem("hulu_lang",l)}catch(e){}document.documentElement.lang=l;
+  tr(document.body);if(typeof playEl!=="undefined")tr(playEl);
+  document.querySelectorAll("[data-lang]").forEach(b=>b.classList.toggle("on",b.dataset.lang===l));
+  document.getElementById("lang").textContent=l==="en"?"EN":"አማ";
+  window.dispatchEvent(new Event("hulu-lang"))};
+ window.addEventListener("hulu-lang",()=>{drawChips();render()});
+ document.getElementById("lang").onclick=()=>set(LANG==="en"?"am":"en");
+ document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>set(b.dataset.lang));
+ set(LANG)})();
 </script>
 </body></html>
