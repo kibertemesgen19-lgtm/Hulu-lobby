@@ -55,6 +55,8 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .sheet .acct b{font-size:20px;color:var(--lime);letter-spacing:.5px}.sheet .acct button,.sheet .go{border:0;border-radius:12px;font-weight:700;padding:10px 14px;background:var(--lime);color:#0b1414}
 .sheet label{display:block;margin:12px 0 4px;font-weight:600}.sheet input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:#fff;font-size:16px}
 .sheet .go{width:100%;margin-top:14px;padding:13px;font-size:16px}.sheet .go:disabled{opacity:.5}.sheet .msg{margin-top:12px;padding:10px;border-radius:10px;background:var(--chip);display:none}.sheet .msg.on{display:block}
+.play{position:fixed;inset:0;z-index:30;display:none;background:#000}.play.on{display:block}.play iframe{width:100%;height:100%;border:0}
+.play .exit{position:absolute;top:calc(8px + env(safe-area-inset-top));left:8px;z-index:2;border:1px solid #fff4;border-radius:20px;padding:7px 13px;background:#000b;color:#fff;font-weight:700;font-size:14px}
 </style></head><body>
 <div class="promo">🎁<div><b>ነፃ Demo · Free play</b><small>56 ጨዋታዎችን በነፃ ይሞክሩ · No deposit needed</small></div></div>
 <header><a class="logo" href="#"><img src="logo.svg" alt=""><div>HULU <span>GAMES</span></div></a><div class="bal"><b>DEMO</b><small>Virtual play</small></div></header>
@@ -114,9 +116,16 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-tg]");if(!
 document.addEventListener("click",async e=>{
  const a=REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();e.stopImmediatePropagation();
  try{const r=await fetch(API+"launch",{method:"POST",headers:{"content-type":"application/json","x-telegram-init-data":INIT},body:JSON.stringify({title_id:a.href.slice(LAUNCH.length),mode:"real"})});
-  const j=await r.json();if(!r.ok||!j.launch_url)return say(j.error||"ጨዋታው አልተከፈተም · Could not start the game");location.href=j.launch_url;
+  const j=await r.json();if(!r.ok||!j.launch_url)return say(j.error||"ጨዋታው አልተከፈተም · Could not start the game");play(j.launch_url);
  }catch(err){say("ግንኙነት አልተሳካም · Connection failed")}
 },true);
+// Games open over the lobby so the exit button (and Telegram's back button) can always bring the player back.
+const playEl=document.createElement("div");playEl.className="play";playEl.innerHTML='<button class="exit">✕ ውጣ · Exit</button><iframe allow="autoplay; fullscreen; clipboard-write" allowfullscreen></iframe>';document.body.append(playEl);
+const frame=playEl.querySelector("iframe"),BB=(()=>{try{return Telegram.WebApp.BackButton}catch(e){return null}})();
+function play(url){frame.src=url;playEl.classList.add("on");document.body.style.overflow="hidden";try{BB.show()}catch(e){}}
+function exitGame(){playEl.classList.remove("on");frame.src="about:blank";document.body.style.overflow="";try{BB.hide()}catch(e){}wallet()}
+playEl.querySelector(".exit").onclick=exitGame;try{BB.onClick(exitGame)}catch(e){}
+document.addEventListener("click",e=>{const a=!REAL&&e.target.closest(`a[href^="${LAUNCH}"]`);if(!a)return;e.preventDefault();play(a.href)});
 wallet();
 
 try{Telegram.WebApp.ready();Telegram.WebApp.expand();Telegram.WebApp.setHeaderColor("#0e1919");Telegram.WebApp.setBackgroundColor("#0b1414")}catch(e){}
