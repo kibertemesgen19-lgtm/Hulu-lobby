@@ -100,6 +100,7 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .sheet h3 .ic{color:var(--lime)}.txs li>span.ti{width:36px;height:36px;border-radius:10px;background:var(--chip);display:grid;place-items:center;font-size:0}.txs li>span.ti .ic{width:20px;height:20px}
 .ti.deposit{color:var(--green)}.ti.withdraw{color:var(--gold)}.ti.bet{color:#ff8a8a}.ti.win{color:var(--lime)}
 .hw .lang{width:auto;min-width:40px;padding:0 10px;font-size:13px;font-weight:700;color:var(--lime);letter-spacing:.3px}
+.qa{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.qa button{flex:1;min-width:52px;padding:8px 0;border-radius:10px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-weight:600;font-size:14px}.qa button:active{background:var(--lime);color:#0b1414}
 .seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}.seg button{flex:1;padding:10px;border-radius:10px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:15px}.seg .on{background:var(--lime);color:#0b1414;font-weight:700}
 /* Typography */
 body{font-family:"Outfit","Noto Sans Ethiopic",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
@@ -247,7 +248,9 @@ render();
 <p>1. በቴሌብር ወደዚህ ቁጥር ይላኩ · 1. Send with Telebirr to:</p>
 <div class="acct"><div><b id="tbnum">…</b><div id="tbname"></div></div><button id="copy">ቅዳ · Copy</button></div>
 <p id="tbmin"></p>
-<label for="tx">2. የግብይት ቁጥር (ከቴሌብር SMS) · 2. Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
+<label for="depamt">2. የላኩት የብር መጠን · 2. Amount you sent (ETB)</label><input id="depamt" type="number" inputmode="decimal" min="10" placeholder="0.00">
+<div class="qa" id="qa"><button data-a="50">50</button><button data-a="100">100</button><button data-a="200">200</button><button data-a="500">500</button><button data-a="1000">1000</button></div>
+<label for="tx">3. የግብይት ቁጥር (ከቴሌብር SMS) · 3. Transaction number</label><input id="tx" autocomplete="off" autocapitalize="characters" placeholder="CHQ0FJ403O">
 <button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
 <div class="sheet" id="prof"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-user"/></svg> የእኔ መገለጫ · My profile</span></h3>
 <div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><button class="idc" id="pfu"></button><div class="tags" id="pft"></div></div></div>
@@ -343,10 +346,14 @@ render();
  // The player's Telegram photo on the Profile tab, when Telegram shares it.
  try{const u=Telegram.WebApp.initDataUnsafe.user;if(u&&u.photo_url)$("ftav").innerHTML=`<img src="${esc(u.photo_url)}" alt="">`}catch(e){}
  $("copy").onclick=()=>{try{navigator.clipboard.writeText($("tbnum").textContent);$("copy").textContent="✓"}catch(e){}};
- $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg");if(!$("tx").value.trim())return show(m,"የግብይት ቁጥሩን ያስገቡ · Enter the transaction number");
-  b.disabled=true;try{const j=await post("deposit",{tx_id:$("tx").value});
-   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! ቀሪ ሂሳብ፦ ${etb(j.balance_minor)} · ✅ ${etb(j.amount_minor)} received! Balance: ${etb(j.balance_minor)}`);$("tx").value=""}
-   else if(j.status==="pending")show(m,"⏳ ተቀብለናል፤ admin እያረጋገጠ ነው። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · Received, waiting for admin approval.");
+ $("qa").onclick=e=>{const b=e.target.closest("[data-a]");if(b)$("depamt").value=b.dataset.a};
+ $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg"),a=Number($("depamt").value);
+  if(!(a>0))return show(m,"የላኩትን የብር መጠን ያስገቡ · Enter the amount you sent");
+  if(TB&&a<TB.min)return show(m,`ቢያንስ ${TB.min} ብር · Minimum is ${TB.min} ETB`);
+  if(!$("tx").value.trim())return show(m,"የግብይት ቁጥሩን ያስገቡ · Enter the transaction number");
+  b.disabled=true;try{const j=await post("deposit",{tx_id:$("tx").value,amount_etb:a});
+   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! ቀሪ ሂሳብ፦ ${etb(j.balance_minor)} · ✅ ${etb(j.amount_minor)} received! Balance: ${etb(j.balance_minor)}`);$("tx").value="";$("depamt").value=""}
+   else if(j.status==="pending"){show(m,`⏳ የ${a} ብር ጥያቄዎ ለadmin ደርሷል። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · ⏳ Your ${a} ETB request was sent to the admin. You will get a bot message when it is approved.`);$("tx").value="";$("depamt").value=""}
    else show(m,L("❌ አልተቀበልነውም · ❌ Rejected")+(j.reason?": "+j.reason:""));
   }catch(err){show(m,"❌ "+err.message)}b.disabled=false};
  $("wdgo").onclick=async()=>{const b=$("wdgo"),m=$("wdmsg");b.disabled=true;
