@@ -252,7 +252,7 @@ render();
    $("kv-j").textContent=day(p.joined_at);$("kv-ld").textContent=ago(p.last.deposit_at);$("kv-lw").textContent=ago(p.last.withdraw_at);$("kv-lp").textContent=ago(p.last.played_at);
    if(p.hulu){$("pfh").style.display="";$("hu-p").textContent=p.hulu.points;$("hu-g").textContent=p.hulu.played;$("hu-w").textContent=p.hulu.wins}
    TX=p.transactions;list();
-   if(p.admin){const a=$("pfadmin");a.style.display="block";a.href=HULU+"admin"+(window.TG_HASH||location.hash)}
+   if(p.admin){const a=$("pfadmin");a.style.display="block";a.href=HULU+"admin?from=lobby"+(window.TG_HASH||location.hash)}
   }catch(e){show($("pfmsg"),"ግንኙነት አልተሳካም · Connection failed")}
  }
  async function open(id){
