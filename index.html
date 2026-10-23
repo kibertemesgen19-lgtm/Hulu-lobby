@@ -97,8 +97,9 @@ let REAL=false;
 const say=m=>{try{Telegram.WebApp.showAlert(m)}catch(e){alert(m)}};
 async function wallet(){
  if(!INIT)return;
+ document.getElementById("wbtns").style.display="flex";
  try{const r=await fetch(API+"wallet",{headers:{"x-telegram-init-data":INIT}});if(!r.ok)return;const w=await r.json();if(!w.real)return;
-  REAL=true;document.getElementById("wbtns").style.display="flex";document.querySelector(".bal").innerHTML=`<b>${(w.balance_minor/100).toFixed(2)} ETB</b><small>Wallet</small>`;
+  REAL=true;document.querySelector(".bal").innerHTML=`<b>${(w.balance_minor/100).toFixed(2)} ETB</b><small>Wallet</small>`;
   document.querySelector(".note").textContent="በETB እየተጫወቱ ነው። 18+ በኃላፊነት ይጫወቱ። · Playing with real ETB. 18+, play responsibly.";
  }catch(e){}
 }
