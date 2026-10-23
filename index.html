@@ -2,6 +2,8 @@
 <html lang="am"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Hulu Games · Casino</title>
 <script>window.TG_HASH=location.hash</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&display=swap">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root{color-scheme:dark;--bg:#0b1414;--panel:#132020;--chip:#1a2a2a;--line:#263838;--lime:#b5ff3f;--green:#2fd34a;--muted:#9fb0ad;--gold:#f5c542}
@@ -97,6 +99,28 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .bar{display:flex;margin:-4px 0 10px}.back{display:inline-flex;align-items:center;gap:4px;padding:8px 14px 8px 8px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-weight:700;font-size:14px}.back .ic{width:20px;height:20px;stroke-width:2.6}
 .sheet h3 .ic{color:var(--lime)}.txs li>span.ti{width:36px;height:36px;border-radius:10px;background:var(--chip);display:grid;place-items:center;font-size:0}.txs li>span.ti .ic{width:20px;height:20px}
 .ti.deposit{color:var(--green)}.ti.withdraw{color:var(--gold)}.ti.bet{color:#ff8a8a}.ti.win{color:var(--lime)}
+/* Typography */
+body{font-family:"Outfit","Noto Sans Ethiopic",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+button,input{font-family:inherit}
+b,.a,.bal,.pbal,.stats,.kv b,#tbnum,.pf .idc{font-variant-numeric:tabular-nums}
+h1,h2,h3,.wm b,.slide h3{letter-spacing:-.3px}.wm b{font-weight:900;font-size:22px}.wm small{font-weight:700}
+section h2{font-weight:700;font-size:20px}.sheet h3{font-size:19px;font-weight:700}
+.en{opacity:.6;font-weight:500;font-size:.9em;letter-spacing:.1px}button .en,.back .en{opacity:.72}
+.cu{font-size:.58em;font-weight:600;letter-spacing:.6px;margin-left:5px;opacity:.65}
+.bal b{font-size:17px;font-weight:700;letter-spacing:-.2px}.bal small{font-weight:600;letter-spacing:.6px}
+.pf b{font-size:21px;font-weight:700;letter-spacing:-.3px;line-height:1.2}.pf .idc{font-size:13px;letter-spacing:.2px;margin-top:2px}
+.pf .tags span{font-weight:500;font-size:11.5px;letter-spacing:.2px}
+.pbal small{font-size:12.5px;font-weight:500;letter-spacing:.3px}.pbal b{font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin-top:4px}
+.pbal b .cu{color:var(--lime);opacity:1;font-size:.42em;letter-spacing:1.2px;vertical-align:.35em}
+.prow button{font-size:15px;font-weight:700;letter-spacing:.1px}
+.sec{font-size:12px;font-weight:700;letter-spacing:1.4px;color:#b9c8c5}.sec .en{opacity:.55}
+.stats div{padding:12px}.stats small{font-size:12px;font-weight:500;line-height:1.3}.stats b{display:block;margin-top:6px;font-size:19px;font-weight:700;letter-spacing:-.3px}
+.stats em{margin-top:2px;font-size:11.5px;font-weight:500}
+.kv span{font-size:13.5px;font-weight:400}.kv b{font-weight:600;font-size:14.5px;text-align:right}
+.txs b{font-weight:600}.txs .a{font-size:15px;letter-spacing:-.2px}.txs small{font-size:12px}
+.ftabs button,nav.tabs a,.chips button{font-weight:600;letter-spacing:.1px}
+footer a,footer button{font-size:11px;font-weight:600;letter-spacing:.2px}
+.lt{font-weight:900;letter-spacing:4px}.lsub{font-weight:600;letter-spacing:.2px}.len{font-weight:500}
 </style></head><body>
 <div class="ld" id="splash"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#3fae46" stroke-linecap="round"><circle class="o1" cx="60" cy="60" r="50" stroke-width="10" stroke-dasharray="230 84"/><circle class="o2" cx="60" cy="60" r="38" stroke-width="5" stroke-dasharray="150 89"/></g><g class="hh"><circle cx="60" cy="60" r="27" fill="none" stroke="#3fae46" stroke-width="4"/><path d="M48 44h7v12h10V44h7v32h-7V63H55v13h-7z" fill="#3fae46"/></g></svg><div class="lt"><span class="w1">HULU</span><span class="w2">GAMES</span></div><div class="lsub"><span class="dot"></span>Casino እየተከፈተ ነው<em><span>.</span><span>.</span><span>.</span></em></div><div class="len">Welcome · Loading</div><i></i></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol><symbol id="i-chip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></symbol><symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor"/><circle cx="16" cy="8" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="8" cy="16" r="1.3" fill="currentColor"/><circle cx="16" cy="16" r="1.3" fill="currentColor"/></symbol><symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol><symbol id="i-cherry" viewBox="0 0 24 24"><circle cx="7" cy="17" r="4"/><circle cx="17" cy="17" r="4"/><path d="M7 13c0-4 3-8 9-10M17 13c0-3-1-6-1-10M16 3c2 0 4 1 5 2"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol><symbol id="i-pad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11" r="1.1" fill="currentColor"/><circle cx="17.5" cy="13.5" r="1.1" fill="currentColor"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol><symbol id="i-steps" viewBox="0 0 24 24"><path d="M4 16v-2.4C4 11.5 3 10.5 3 8c0-2.7 1.5-6 4.5-6C9.4 2 10 3.8 10 5.5c0 3.1-2 5.7-2 8.7V16a2 2 0 1 1-4 0z"/><path d="M20 20v-2.4c0-2.1 1-3.1 1-5.6 0-2.7-1.5-6-4.5-6C14.6 6 14 7.8 14 9.5c0 3.1 2 5.7 2 8.7V20a2 2 0 1 0 4 0z"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol><symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M11 10.5l1.2-.8v4.6"/></symbol><symbol id="i-bomb" viewBox="0 0 24 24"><circle cx="11" cy="14" r="7"/><path d="m15.5 9.5 2-2M18 3.5l.5 1.5M21 6.5l-1.5.5M20.5 2.5 19.5 4"/></symbol><symbol id="i-sport" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7.5 3.8 2.8-1.4 4.5H9.6l-1.4-4.5z"/><path d="M12 3v4.5M15.8 10.3l4.5-1.5M14.4 14.8l2.6 3.9M9.6 14.8 7 18.7M8.2 10.3 3.7 8.8"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9z"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol><symbol id="i-in" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 17v3h16v-3"/></symbol><symbol id="i-out" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 17v3h16v-3"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.7-2.7-3-6-3"/></symbol><symbol id="i-bet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8l-5 8"/></symbol></svg>
@@ -149,6 +173,7 @@ q.addEventListener("input",render);
 const API=HULU+"api/nebula/",INIT=(()=>{try{return Telegram.WebApp.initData||""}catch(e){return ""}})();
 let REAL=false;
 const say=m=>{try{Telegram.WebApp.showAlert(m)}catch(e){alert(m)}};
+const cur=m=>money(m)+'<span class="cu">ETB</span>';
 const money=m=>{const n=m/100;return n.toLocaleString("en-US",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})};
 function setBal(m){document.getElementById("balv").textContent=money(m);document.getElementById("balc").textContent="ETB"}
 async function wallet(){
@@ -261,15 +286,15 @@ render();
    $("pfi").innerHTML=tg.photo_url?`<img src="${esc(tg.photo_url)}" alt="">`:esc((p.name||"?").trim().charAt(0).toUpperCase());$("pfn").textContent=p.name||"Player";
    $("pfu").textContent=(p.username?"@"+p.username+" · ":"")+"ID "+p.id+" ⧉";$("pfu").onclick=()=>{try{navigator.clipboard.writeText(p.id);say("ID ተቀድቷል · ID copied")}catch(e){}};
    $("pft").innerHTML=[REAL?"🟢 Real ETB":"🎮 Demo",tg.is_premium?"⭐ Premium":"",tg.language_code?"🌐 "+esc(tg.language_code):"",p.joined_at?"📅 "+day(p.joined_at):""].filter(Boolean).map(t=>`<span>${t}</span>`).join("");
-   $("pfb").textContent=etb(p.balance_minor);setBal(p.balance_minor);const T=p.totals,C=p.counts;
+   $("pfb").innerHTML=(p.balance_minor/100).toFixed(2)+'<span class="cu">ETB</span>';setBal(p.balance_minor);const T=p.totals,C=p.counts;
    const pn=[T.pending_withdraw_minor?`⏳ ${ETB(T.pending_withdraw_minor)} ለማውጣት በመጠበቅ ላይ · withdrawal pending`:"",T.pending_deposits?`⏳ ${T.pending_deposits} ገቢ admin እየጠበቀ · deposit(s) awaiting admin`:""].filter(Boolean);
    $("pfp").style.display=pn.length?"block":"none";$("pfp").innerHTML=pn.join("<br>");
-   $("st-d").textContent=ETB(T.deposited_minor);$("sc-d").textContent=cnt(C.deposits,"ጊዜ · times");
-   $("st-w").textContent=ETB(T.withdrawn_minor);$("sc-w").textContent=cnt(C.withdrawals,"ጊዜ · times");
-   $("st-b").textContent=ETB(T.bet_minor);$("sc-b").textContent=cnt(C.bets,"ውርርድ · bets");
-   $("st-v").textContent=ETB(T.won_minor);$("sc-v").textContent=cnt(C.wins,"ድል · wins");
-   $("st-n").textContent=(T.net_minor>0?"+":T.net_minor<0?"−":"")+ETB(Math.abs(T.net_minor));$("st-n").style.color=T.net_minor>0?"var(--green)":T.net_minor<0?"#ff6b6b":"";
-   $("st-x").textContent=ETB(p.biggest_win_minor);
+   $("st-d").innerHTML=cur(T.deposited_minor);$("sc-d").textContent=cnt(C.deposits,"ጊዜ · times");
+   $("st-w").innerHTML=cur(T.withdrawn_minor);$("sc-w").textContent=cnt(C.withdrawals,"ጊዜ · times");
+   $("st-b").innerHTML=cur(T.bet_minor);$("sc-b").textContent=cnt(C.bets,"ውርርድ · bets");
+   $("st-v").innerHTML=cur(T.won_minor);$("sc-v").textContent=cnt(C.wins,"ድል · wins");
+   $("st-n").innerHTML=(T.net_minor>0?"+":T.net_minor<0?"−":"")+cur(Math.abs(T.net_minor));$("st-n").style.color=T.net_minor>0?"var(--green)":T.net_minor<0?"#ff6b6b":"";
+   $("st-x").innerHTML=cur(p.biggest_win_minor);
    $("kv-f").textContent=p.favorite_game?p.favorite_game.replace(/-/g," "):"—";$("kv-r").textContent=C.bets?Math.round(C.wins/C.bets*100)+"%":"—";
    $("kv-j").textContent=day(p.joined_at);$("kv-ld").textContent=ago(p.last.deposit_at);$("kv-lw").textContent=ago(p.last.withdraw_at);$("kv-lp").textContent=ago(p.last.played_at);
    if(p.hulu){$("pfh").style.display="";$("hu-p").textContent=p.hulu.points;$("hu-g").textContent=p.hulu.played;$("hu-w").textContent=p.hulu.wins}
@@ -318,4 +343,11 @@ render();
  BB.onClick(()=>{const t=top();if(!t)return;if(t.classList.contains("play"))exitGame();else{t.classList.remove("on");if(t.id==="prof")document.getElementById("ftprof").classList.remove("on")}sync()});
  new MutationObserver(sync).observe(document.body,{subtree:true,attributes:true,attributeFilter:["class"]});
 })();
-</script></body></html>
+</script><script>
+// Bilingual labels: keep Amharic primary and set the English half lighter.
+(function(){const skip=/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/;
+ const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>!skip.test(n.parentNode.nodeName)&&!n.parentNode.closest(".en,p,.note,.msg,.pnote")&&/\S · \S/.test(n.nodeValue)?1:2});
+ const l=[];while(w.nextNode())l.push(w.currentNode);
+ l.forEach(n=>{const i=n.nodeValue.indexOf(" · ");const e=document.createElement("span");e.className="en";e.textContent=n.nodeValue.slice(i+1);n.nodeValue=n.nodeValue.slice(0,i+1);n.after(e)})})();
+</script>
+</body></html>
