@@ -24,7 +24,7 @@ nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;background:#101c1
 nav.tabs a{flex:none;padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}nav.tabs a.on{color:#fff;background:var(--chip)}
 .hero{margin:14px 16px;border-radius:16px;padding:20px;min-height:120px;background:radial-gradient(circle at 85% 30%,#ff3b3b55,transparent 45%),linear-gradient(120deg,#163b26,#0f2a2f 60%,#2a1830);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
 .hero h1{margin:0;font-size:26px;color:var(--gold);text-shadow:0 2px 0 #7a4d00}.hero p{margin:6px 0 0;color:#dfe}
-.slider{position:relative;margin:14px 16px;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/7;background:#132020}
+.slider{position:relative;margin:14px 16px;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1672/941;background:#132020}
 .track{display:flex;height:100%;transition:transform .5s ease}
 .slide{position:relative;flex:0 0 100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:18px 20px;overflow:hidden}
 .slide img.bg{position:absolute;right:-6%;top:50%;transform:translateY(-50%) rotate(-6deg);height:125%;aspect-ratio:1;object-fit:cover;border-radius:18px;box-shadow:0 8px 30px #0008;opacity:.95}
@@ -34,7 +34,7 @@ nav.tabs a{flex:none;padding:8px 12px;border-radius:10px;color:var(--muted);font
 .slide h3{margin:6px 0 4px;font-size:24px;line-height:1.05;color:var(--gold);text-shadow:0 2px 0 #6a3d00}
 .slide p{margin:0 0 10px;font-size:13px;color:#e8f2ee}
 .slide .cta{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--green);color:#04160a;font-weight:800;font-size:14px}
-.dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:6px}
+.dots{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center;gap:6px}
 .dots i{width:7px;height:7px;border-radius:50%;background:#fff5}.dots i.on{width:18px;border-radius:4px;background:var(--lime)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px;scrollbar-width:none}
 .chips button{flex:none;display:flex;gap:6px;align-items:center;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#fff;font:inherit;font-weight:600}
@@ -249,11 +249,7 @@ document.addEventListener("click",e=>{const a=!REAL&&e.target.closest(`a[href^="
 
 try{Telegram.WebApp.ready();Telegram.WebApp.expand();Telegram.WebApp.setHeaderColor("#0e1919");Telegram.WebApp.setBackgroundColor("#0b1414")}catch(e){}
 // Ad posters. To add your own picture: put it in posters/ and add {img:"posters/name.jpg",game:"aviator-x"}.
-const POSTERS=[
- {tag:"HOT",ti:"flame",title:"Aviator-X",text:"አውሮፕላኑ ከመብረሩ በፊት ይውጡ! · Cash out before it flies",game:"aviator-x",bg:"linear-gradient(120deg,#3b0a0a,#140606 60%,#000)"},
- {tag:"NEW",ti:"sparkle",title:"Chicken Road",text:"መንገዱን በሰላም ያሻግሩት · Cross the road, step by step",game:"chicken-road",bg:"linear-gradient(120deg,#3b2a05,#1d1405 60%,#0b0a04)"},
- {tag:"SLOTS",ti:"cherry",title:"Gates of Olympus",text:"ዜውስ ይጠብቅዎታል · Free demo spins",game:"gates-of-olympus-1000",bg:"linear-gradient(120deg,#2a0f3d,#140a24 60%,#07040f)"},
- {tag:"KENO",ti:"ball",title:"Fast Keno",text:"ቁጥሮችዎን ይምረጡ · Pick your lucky numbers",game:"fast-keno",bg:"linear-gradient(120deg,#063a33,#06221f 60%,#030f0d)"}];
+const POSTERS=["aviator-x","chicken-road","casino-island","fast-keno"].map(g=>({game:g,img:`posters/${g}.webp`}));
 const track=document.getElementById("track"),dots=document.getElementById("dots");
 track.innerHTML=POSTERS.map(p=>p.img?`<a class="slide" href="${LAUNCH}${p.game}"><img class="full" src="${p.img}" alt=""></a>`:`<a class="slide" href="${LAUNCH}${p.game}" style="background:${p.bg}"><img class="bg" src="covers/${p.game}.webp" alt=""><div class="tx"><small>${ic(p.ti)} ${p.tag}</small><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><span class="cta">${ic("play")} Play</span></div></a>`).join("");
 dots.innerHTML=POSTERS.map(()=>"<i></i>").join("");
