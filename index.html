@@ -109,8 +109,6 @@ footer .on{color:var(--lime)}footer i{font-style:normal;font-size:22px}
 .sheet textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:#fff;font:inherit;font-size:15px;resize:vertical;min-height:52px}
 .txok{display:none;margin-top:6px;color:var(--green);font-weight:600;font-size:13px}.txok.on{display:block}
 .or{display:flex;align-items:center;gap:10px;margin:14px 0 10px;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
-.shotbtn{display:flex!important;align-items:center;justify-content:center;gap:8px;margin:0!important;padding:13px;border-radius:12px;border:1.5px dashed #3c5a1c;background:#1f3a1222;color:var(--lime);font-weight:600!important;cursor:pointer;text-align:center}
-.shotbtn.off{display:none!important}.shotp{display:none;position:relative;margin-top:4px}.shotp.on{display:block}.shotp img{display:block;max-height:220px;max-width:100%;border-radius:12px;border:1px solid var(--line)}.shotp button{position:absolute;top:6px;left:6px;width:30px;height:30px;border-radius:50%;border:0;background:#000b;color:#fff;font-size:15px}
 .qa{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.qa button{flex:1;min-width:52px;padding:8px 0;border-radius:10px;border:1px solid var(--line);background:var(--chip);color:#fff;font:inherit;font-weight:600;font-size:14px}.qa button:active{background:var(--lime);color:#0b1414}
 .seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}.seg button{flex:1;padding:10px;border-radius:10px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:15px}.seg .on{background:var(--lime);color:#0b1414;font-weight:700}
 /* Typography */
@@ -270,9 +268,6 @@ render();
 <div class="qa" id="qa"><button data-a="50">50</button><button data-a="100">100</button><button data-a="200">200</button><button data-a="500">500</button><button data-a="1000">1000</button></div>
 <label for="tx">3. የግብይት ቁጥር ወይም ከ127 የመጣው SMS · 3. Transaction number or the SMS from 127</label><textarea id="tx" rows="3" autocomplete="off" placeholder="CHQ0FJ403O ወይም ሙሉውን SMS ይለጥፉ · CHQ0FJ403O or paste the whole SMS"></textarea>
 <div class="txok" id="txok"></div>
-<div class="or"><span>ወይም · or</span></div>
-<label class="shotbtn" id="shotbtn"><svg class="ic"><use href="#i-receipt"/></svg> <span>የቴሌብር screenshot ያያይዙ · Attach a Telebirr screenshot</span><input id="shot" type="file" accept="image/*" hidden></label>
-<div class="shotp" id="shotp"><img id="shotimg" alt=""><button id="shotx" aria-label="Remove">✕</button></div>
 <button class="go" id="depgo">አረጋግጥ · Confirm deposit</button><div class="msg" id="depmsg"></div></div></div>
 <div class="sheet" id="prof"><div><div class="bar"><button class="back" data-close><svg class="ic"><use href="#i-back"/></svg> ተመለስ · Back</button></div><h3><span><svg class="ic"><use href="#i-user"/></svg> የእኔ መገለጫ · My profile</span></h3>
 <div class="pf"><div class="big" id="pfi">?</div><div><b id="pfn">…</b><button class="idc" id="pfu"></button><div class="tags" id="pft"></div></div></div>
@@ -377,25 +372,16 @@ render();
  $("tx").oninput=()=>{const v=$("tx").value,t=findTx(v),o=$("txok");
   if(!$("depamt").value){const a=v.match(/(?:transferred|paid|sent)\s+ETB\s*([\d,]+(?:\.\d{1,2})?)/i)||v.match(/([\d,]+(?:\.\d{1,2})?)\s*ብር/);if(a)$("depamt").value=a[1].replace(/,/g,"")}
   o.textContent=t?"✓ "+L("የግብይት ቁጥር · Transaction")+": "+t:"";o.classList.toggle("on",!!t)};
- // Screenshots are shrunk to a JPEG of at most 1280px before upload.
- let SHOT=null;
- const clearShot=()=>{SHOT=null;$("shot").value="";$("shotp").classList.remove("on");$("shotbtn").classList.remove("off");$("txok").classList.remove("on")};
- $("shotx").onclick=e=>{e.preventDefault();clearShot()};
- $("shot").onchange=()=>{const f=$("shot").files[0];if(!f)return;const img=new Image(),u=URL.createObjectURL(f);
-  img.onload=()=>{const k=Math.min(1,1280/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
-   c.getContext("2d").drawImage(img,0,0,c.width,c.height);SHOT=c.toDataURL("image/jpeg",.8);URL.revokeObjectURL(u);
-   $("shotimg").src=SHOT;$("shotp").classList.add("on");$("shotbtn").classList.add("off")};
-  img.onerror=()=>{URL.revokeObjectURL(u);show($("depmsg"),"ምስሉ አልተከፈተም · Could not open the image")};img.src=u};
  $("qa").onclick=e=>{const b=e.target.closest("[data-a]");if(b)$("depamt").value=b.dataset.a};
  $("depgo").onclick=async()=>{const b=$("depgo"),m=$("depmsg"),a=Number($("depamt").value);
   if(!(a>0))return show(m,"የላኩትን የብር መጠን ያስገቡ · Enter the amount you sent");
   if(TB&&a<TB.min)return show(m,`ቢያንስ ${TB.min} ብር · Minimum is ${TB.min} ETB`);
   const tx=findTx($("tx").value);
-  if($("tx").value.trim()&&!tx&&!SHOT)return show(m,"የግብይት ቁጥሩ አልተገኘም፤ ቁጥሩን ወይም SMSኡን ያረጋግጡ · Transaction number not found; check the number or SMS");
-  if(!tx&&!SHOT)return show(m,"የግብይት ቁጥር፣ SMS ወይም screenshot ያስገቡ · Enter the transaction number, SMS or a screenshot");
-  b.disabled=true;try{const j=await post("deposit",{tx_id:tx||"",amount_etb:a,...(SHOT?{screenshot:SHOT}:{})});
-   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! ቀሪ ሂሳብ፦ ${etb(j.balance_minor)} · ✅ ${etb(j.amount_minor)} received! Balance: ${etb(j.balance_minor)}`);$("tx").value="";$("depamt").value="";clearShot()}
-   else if(j.status==="pending"){show(m,`⏳ የ${a} ብር ጥያቄዎ ለadmin ደርሷል። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · ⏳ Your ${a} ETB request was sent to the admin. You will get a bot message when it is approved.`);$("tx").value="";$("depamt").value="";clearShot()}
+  if($("tx").value.trim()&&!tx)return show(m,"የግብይት ቁጥሩ አልተገኘም፤ ቁጥሩን ወይም SMSኡን ያረጋግጡ · Transaction number not found; check the number or SMS");
+  if(!tx)return show(m,"የግብይት ቁጥሩን ወይም SMSኡን ያስገቡ · Enter the transaction number or the SMS");
+  b.disabled=true;try{const j=await post("deposit",{tx_id:tx,amount_etb:a});
+   if(j.status==="approved"){setBal(j.balance_minor);show(m,`✅ ${etb(j.amount_minor)} ገብቷል! ቀሪ ሂሳብ፦ ${etb(j.balance_minor)} · ✅ ${etb(j.amount_minor)} received! Balance: ${etb(j.balance_minor)}`);$("tx").value="";$("depamt").value=""}
+   else if(j.status==="pending"){show(m,`⏳ የ${a} ብር ጥያቄዎ ለadmin ደርሷል። ሲጸድቅ በbot መልዕክት ይደርስዎታል። · ⏳ Your ${a} ETB request was sent to the admin. You will get a bot message when it is approved.`);$("tx").value="";$("depamt").value=""}
    else show(m,L("❌ አልተቀበልነውም · ❌ Rejected")+(j.reason?": "+j.reason:""));
   }catch(err){show(m,"❌ "+err.message)}b.disabled=false};
  $("wdgo").onclick=async()=>{const b=$("wdgo"),m=$("wdmsg");b.disabled=true;
