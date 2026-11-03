@@ -1,0 +1,53 @@
+name: Player app APK
+# Builds the Hulu Games Android app (android-player/) and publishes it as the "player-app" release.
+on:
+  push:
+    branches: [main]
+    paths: ["android-player/**", ".github/workflows/player-app.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+      # The signing key is kept in the Actions cache (not public) so app updates install over the old version.
+      # The cache expires after 7 days without a build; a new key then means players reinstall once.
+      - name: Restore signing key
+        id: key
+        uses: actions/cache@v4
+        with:
+          path: ~/player-key
+          key: player-signing-key-v1
+      - name: Create signing key
+        if: steps.key.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/player-key
+          openssl rand -hex 16 > ~/player-key/pass
+          P="$(cat ~/player-key/pass)"
+          keytool -genkeypair -keystore ~/player-key/release.jks -storepass "$P" -keypass "$P" \
+            -alias hulu -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Hulu Games"
+      - name: Build signed APK
+        working-directory: android-player
+        run: |
+          export KEYSTORE_PASSWORD="$(cat ~/player-key/pass)"
+          export KEYSTORE_FILE="$HOME/player-key/release.jks"
+          gradle assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/hulu-games.apk"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete player-app --yes --cleanup-tag || true
+          gh release create player-app "$RUNNER_TEMP/hulu-games.apk" --title "Hulu Games app" \
+            --notes "Android app for Hulu Games. Sign in with your registered phone; the code comes from @HULU_GAMES_BOT."
