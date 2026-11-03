@@ -21,13 +21,26 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.7"
+      # The signing key is kept in the Actions cache so updates install over the old version.
+      - name: Restore signing key
+        id: key
+        uses: actions/cache@v4
+        with:
+          path: ~/admin-key
+          key: admin-signing-key-v1
+      - name: Create signing key
+        if: steps.key.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/admin-key
+          openssl rand -hex 16 > ~/admin-key/pass
+          P="$(cat ~/admin-key/pass)"
+          keytool -genkeypair -keystore ~/admin-key/release.jks -storepass "$P" -keypass "$P" \
+            -alias hulu -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Hulu Admin"
       - name: Build signed APK
         working-directory: android
         run: |
-          export KEYSTORE_PASSWORD="$(openssl rand -hex 16)"
-          export KEYSTORE_FILE="$RUNNER_TEMP/release.jks"
-          keytool -genkeypair -keystore "$KEYSTORE_FILE" -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" \
-            -alias hulu -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Hulu Admin"
+          export KEYSTORE_PASSWORD="$(cat ~/admin-key/pass)"
+          export KEYSTORE_FILE="$HOME/admin-key/release.jks"
           gradle assembleRelease --no-daemon
           cp app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/hulu-admin.apk"
       - name: Publish release
