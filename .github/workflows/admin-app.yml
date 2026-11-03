@@ -1,0 +1,39 @@
+name: Admin app APK
+# Builds the Hulu Admin Android app (android/) and publishes it as the "admin-app" release.
+on:
+  push:
+    branches: [main]
+    paths: ["android/**", ".github/workflows/admin-app.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+      - name: Build signed APK
+        working-directory: android
+        run: |
+          export KEYSTORE_PASSWORD="$(openssl rand -hex 16)"
+          export KEYSTORE_FILE="$RUNNER_TEMP/release.jks"
+          keytool -genkeypair -keystore "$KEYSTORE_FILE" -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" \
+            -alias hulu -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Hulu Admin"
+          gradle assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/hulu-admin.apk"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete admin-app --yes --cleanup-tag || true
+          gh release create admin-app "$RUNNER_TEMP/hulu-admin.apk" --title "Hulu Admin app" \
+            --notes "Android app for the Hulu admin dashboard. Sign in with the code the bot sends to the owner."
