@@ -178,6 +178,8 @@ const CATS=[
  {k:"mines",ic:"bomb",l:"ማይንስ እና ፕሊንኮ · Mines & Plinko",ids:"classic-mines plinko-x plinko-x-classic roll-x ice-fish hilo baccarat"},
  {k:"slots",ic:"cherry",l:"ስሎት · Slots",ids:"hell-7s habesha-fortune habesha-fortune-rgs safari-simba savannah-fortune olympian-legends blazinghot big-bass-bonanza big-bass-vegas-1000 gates-of-olympus-1000 casino-island royal-coins-2 fruit-scratch fruit-scratch-rgs diamond-coins"},
  {k:"sport",ic:"sport",l:"ስፖርትና ሌሎች · Sport & Other",ids:"tinbit fflp ffte flwf"}];
+// Games switched off for now (Keber, 2026-11-05): hidden everywhere in the lobby.
+const OFF=new Set(["habesha-fortune-rgs","chicken-road","horse-crash"]);window.GAMES=GAMES.filter(g=>!OFF.has(g.id));
 const byId=Object.fromEntries(GAMES.map(g=>[g.id,g]));
 const ic=n=>`<svg class="ic"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -197,8 +199,8 @@ function render(){
  if(v){const m=GAMES.filter(g=>g.n.toLowerCase().includes(v));list.innerHTML=`<section><h2><span>${ic("search")} ${m.length} ${L("ጨዋታዎች · games")}</span></h2><div class="grid">${m.map(tile).join("")||"<p>"+L("ጨዋታ አልተገኘም · No games found")+"</p>"}</div></section>`;return}
  const favs=FAV.map(id=>byId[id]).filter(Boolean);
  if(active==="fav"){list.innerHTML=`<section><h2><span>${ic("heart")} ${L("ተወዳጆች · Favourites")}</span><small>${favs.length}</small></h2>${favs.length?`<div class="grid">${favs.map(tile).join("")}</div>`:`<p class="empty">${ic("heart")}<br>${L("ገና ምንም የለም። በጨዋታው ላይ ያለውን ♡ ይንኩ። · Nothing yet. Tap ♡ on a game to add it.")}</p>`}</section>`;return}
- if(active==="all"||active==="top"){list.innerHTML=(favs.length?`<section><h2><span>${ic("heart")} ${L("ተወዳጆች · Favourites")}</span><small data-chip="fav">${L("ሁሉም · All")} ›</small></h2><div class="row">${favs.map(tile).join("")}</div></section>`:"")+CATS.map(c=>`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small data-chip="${c.k}">${L("ሁሉም · All")} ›</small></h2><div class="row">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
- const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").map(id=>tile(byId[id])).join("")}</div></section>`;
+ if(active==="all"||active==="top"){list.innerHTML=(favs.length?`<section><h2><span>${ic("heart")} ${L("ተወዳጆች · Favourites")}</span><small data-chip="fav">${L("ሁሉም · All")} ›</small></h2><div class="row">${favs.map(tile).join("")}</div></section>`:"")+CATS.map(c=>`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small data-chip="${c.k}">${L("ሁሉም · All")} ›</small></h2><div class="row">${c.ids.split(" ").filter(id=>byId[id]).map(id=>tile(byId[id])).join("")}</div></section>`).join("");return}
+ const c=CATS.find(c=>c.k===active);list.innerHTML=`<section><h2><span>${ic(c.ic)} ${L(c.l)}</span><small>${c.ids.split(" ").length}</small></h2><div class="grid">${c.ids.split(" ").filter(id=>byId[id]).map(id=>tile(byId[id])).join("")}</div></section>`;
 }
 window.addEventListener("click",e=>{const b=e.target.closest("[data-fav]");if(!b)return;e.preventDefault();e.stopImmediatePropagation();
  toggleFav(b.dataset.fav);document.querySelectorAll(`[data-fav="${b.dataset.fav}"]`).forEach(x=>x.classList.toggle("on",isFav(b.dataset.fav)));
@@ -271,7 +273,7 @@ document.addEventListener("click",e=>{const a=!REAL&&e.target.closest(`a[href^="
 
 try{Telegram.WebApp.ready();Telegram.WebApp.expand();Telegram.WebApp.setHeaderColor("#0e1919");Telegram.WebApp.setBackgroundColor("#0b1414")}catch(e){}
 // Ad posters. To add your own picture: put it in posters/ and add {img:"posters/name.jpg",game:"aviator-x"}.
-const POSTERS=["aviator-x","chicken-road","casino-island","fast-keno"].map(g=>({game:g,img:`posters/${g}.webp`}));
+const POSTERS=["aviator-x","chicken-road","casino-island","fast-keno"].filter(g=>!OFF.has(g)).map(g=>({game:g,img:`posters/${g}.webp`}));
 const track=document.getElementById("track"),dots=document.getElementById("dots");
 track.innerHTML=POSTERS.map(p=>p.img?`<a class="slide" href="${LAUNCH}${p.game}"><img class="full" src="${p.img}" alt=""></a>`:`<a class="slide" href="${LAUNCH}${p.game}" style="background:${p.bg}"><img class="bg" src="covers/${p.game}.webp" alt=""><div class="tx"><small>${ic(p.ti)} ${p.tag}</small><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><span class="cta">${ic("play")} Play</span></div></a>`).join("");
 dots.innerHTML=POSTERS.map(()=>"<i></i>").join("");
